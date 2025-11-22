@@ -1,20 +1,22 @@
 import { useContext } from "react";
 import { ContainerStretchContext } from "@/contexts/ContainerStretchContext";
+import { useStore } from "zustand";
+import type { ContainerStretchStore } from "@/store/stretchableContainer.store.ts";
 
 const sentinelErrorMessage =
-  "useStretchableContainer must be used within a StretchableContainer, which provides context.";
+  "Missing ContainerStretchContext.Provider in the component tree. This hook can only be used within ContainerStretchContext";
 
 /**
- * Custom hook to access the ContainerStretchContext.
- * @throws Error when used outside a StretchableContainer.
- * @returns The context value from ContainerStretchContext.
+ * Custom hook to access the ContainerStretchStore.
+ * @throws Error when used outside a ContainerStretchContext.
+ * @returns The store instance from ContainerStretchContext.
  */
-export const useStretchableContainer = () => {
-  const ctx = useContext(ContainerStretchContext);
+export function useStretchableContainer<T>(selector: (state: ContainerStretchStore) => T) {
+  const store = useContext(ContainerStretchContext);
 
-  if (!ctx) {
+  if (!store) {
     throw new Error(sentinelErrorMessage);
   }
 
-  return ctx;
-};
+  return useStore(store, selector);
+}
