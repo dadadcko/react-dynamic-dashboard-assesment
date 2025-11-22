@@ -1,6 +1,7 @@
 import type { FunctionComponent } from "react";
-import type { DashboardConfig } from "@/pages/Dashboard.tsx";
-import { Grid, Paper } from "@mantine/core";
+import type { DashboardConfig } from "@/types/dashboard.types";
+import { Grid } from "@mantine/core";
+import { Widget } from "@/components/widget/Widget.tsx";
 
 interface DashboardPanelProps {
   config: DashboardConfig;
@@ -8,12 +9,13 @@ interface DashboardPanelProps {
 
 export const DashboardPanel: FunctionComponent<DashboardPanelProps> = ({ config }) => {
   return (
-    <Grid align="flex-start" columns={config.columns} overflow="hidden" grow>
+    <Grid align="flex-start" columns={config.panelColumns} overflow="hidden" grow>
       {config.widgets.map((widgetConfig, index) => (
-        <Grid.Col key={index} span={{ base: config.columns, md: config.columns / 2, lg: 1 }}>
-          {/* Render widget based on its type and configuration */}
-          {/* TODO: RENDER ACTUAL WIDGETS HERE...*/}
-          <Paper p={0} withBorder h={50}>{`Widget: ${widgetConfig.name}`}</Paper>
+        <Grid.Col
+          key={index}
+          span={{ base: config.panelColumns, md: config.panelColumns / 2, lg: 1 }}>
+          {/* Render individual widgets */}
+          <Widget config={widgetConfig} height={config.widgetHeight} />
         </Grid.Col>
       ))}
     </Grid>
