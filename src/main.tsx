@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import App from "./App.tsx";
-import { MantineThemeProvider } from "./MantineThemeProvider.tsx";
+import { App } from "./App";
+import { MantineThemeProvider } from "./MantineThemeProvider";
 
 import "./index.css";
 

@@ -1,35 +1,44 @@
-import * as React from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { Anchor, AppShell, Avatar, Center, Group, Text } from "@mantine/core";
+import { ThemeSwapperButton } from "@/components/ThemeSwapperButton";
+import { StretchableContainer } from "@/components/StretchableContainer";
 
-import { Button } from "@mantine/core";
-
-function App() {
-  const [count, setCount] = React.useState(0);
-
+export function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button type="button" onClick={() => setCount(count => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <AppShell padding="lg" header={{ height: 60 }} footer={{ height: 60 }}>
+      {/* Header */}
+      <AppShell.Header>
+        <Group wrap="nowrap" px="md" h="100%" justify="space-between" className="text-no-overflow">
+          <Text lineClamp={1} size="xl">
+            🚀 Dynamic dashboard App
+          </Text>
+          <Group wrap="nowrap" gap="sm">
+            <ThemeSwapperButton />
+            <Avatar size="md" />
+          </Group>
+        </Group>
+      </AppShell.Header>
+
+      {/* Main page content */}
+      <AppShell.Main>
+        <StretchableContainer>HERE WILL BE DASHBOARD... :)</StretchableContainer>
+      </AppShell.Main>
+
+      {/* Footer */}
+      <AppShell.Footer>
+        <Center h="100%">
+          <Text ta="center" lineClamp={1}>
+            Made with ❤️ by{" "}
+            <Anchor
+              href="https://github.com/dadadcko"
+              target="_blank"
+              underline="never"
+              rel="noopener">
+              Daniel Slanina
+            </Anchor>
+            , 2025
+          </Text>
+        </Center>
+      </AppShell.Footer>
+    </AppShell>
   );
 }
-
-export default App;
