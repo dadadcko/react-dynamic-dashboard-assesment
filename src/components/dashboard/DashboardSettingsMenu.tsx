@@ -11,9 +11,11 @@ import {
   IconUpload,
 } from "@tabler/icons-react";
 import { useStretchableContainer } from "@/hooks/useStretchableContainer.ts";
+import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
 
 export const DashboardSettingsMenu: FunctionComponent = () => {
   const { isFluid, setFluid } = useStretchableContainer();
+  const clearWidgets = useDashboardStore(s => s.clearWidgets);
 
   return (
     <Menu shadow="md">
@@ -42,7 +44,7 @@ export const DashboardSettingsMenu: FunctionComponent = () => {
         </Menu.Item>
         <Menu.Divider />
         <Menu.Label>Danger zone</Menu.Label>
-        <Menu.Item c="red" leftSection={<IconTrash size={14} />}>
+        <Menu.Item c="red" leftSection={<IconTrash size={14} />} onClick={clearWidgets}>
           Clear widgets
         </Menu.Item>
         <Tooltip label="Currently not implemented" withArrow>

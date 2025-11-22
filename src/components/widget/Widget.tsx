@@ -6,9 +6,10 @@ import { WidgetSettingsMenu } from "@/components/widget/WidgetSettingsMenu.tsx";
 interface WidgetProps {
   config: WidgetConfig;
   height?: number;
+  onDelete?: () => void;
 }
 
-export const Widget: FunctionComponent<WidgetProps> = ({ config, height = 250 }) => {
+export const Widget: FunctionComponent<WidgetProps> = ({ config, height = 250, onDelete }) => {
   return (
     <Paper shadow="sm" withBorder h={height} p={8} style={{ overflow: "auto" }}>
       {/* Widget Header*/}
@@ -23,7 +24,7 @@ export const Widget: FunctionComponent<WidgetProps> = ({ config, height = 250 })
             </Text>
           )}
         </div>
-        <WidgetSettingsMenu />
+        <WidgetSettingsMenu onDelete={onDelete} />
       </Group>
       <Divider my="xs" />
 

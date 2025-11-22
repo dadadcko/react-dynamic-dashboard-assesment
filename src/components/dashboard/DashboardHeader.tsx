@@ -1,19 +1,18 @@
 import type { FunctionComponent } from "react";
 import { Group, Text, Title } from "@mantine/core";
 import { DashboardSettingsMenu } from "@/components/dashboard/DashboardSettingsMenu.tsx";
-import type { DashboardConfig } from "@/types/dashboard.types";
+import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
 
-interface DashboardHeaderProps {
-  config: DashboardConfig;
-}
+export const DashboardHeader: FunctionComponent = () => {
+  const title = useDashboardStore(s => s.title);
+  const widgets = useDashboardStore(s => s.widgets);
 
-export const DashboardHeader: FunctionComponent<DashboardHeaderProps> = ({ config }) => {
   return (
     <Group align="start" justify="space-between">
       <div>
-        <Title order={1}>{config.title}</Title>
+        <Title order={1}>{title}</Title>
         <Text size="sm">
-          {config.widgets.length} widget{config.widgets.length !== 1 ? "s" : ""}
+          {widgets.length} widget{widgets.length !== 1 ? "s" : ""}
         </Text>
       </div>
 
