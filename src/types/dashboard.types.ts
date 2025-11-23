@@ -42,6 +42,7 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
       type: "todo-list",
       id: "1",
       dataUrl: "data/todo-list.json",
+      dataFetchDelay: 2000,
     } as WidgetConfigWithRemoteData,
     {
       title: "Widget 2",

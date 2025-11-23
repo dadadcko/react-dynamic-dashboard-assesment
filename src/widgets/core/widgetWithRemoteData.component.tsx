@@ -1,8 +1,8 @@
 import { createElement, type FunctionComponent, type ReactNode, useRef } from "react";
 import type { WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
-import { useFetch } from "@mantine/hooks";
 import { getByPath } from "@/utils/path.utils.ts";
 import { Flex, Loader, Text } from "@mantine/core";
+import { useDelayedFetch } from "@/hooks/useDelayedFetch.ts";
 
 const dataKeyNotValidError = (dataKey: string) =>
   new Error(`Could not extract data using dataKey: ${dataKey ? dataKey : "<empty>"}`);
@@ -45,8 +45,12 @@ export function WidgetWithRemoteDataComponent<T extends WidgetConfigWithRemoteDa
     throw new Error("dataUrl is missing for this widget");
   }
 
-  const { data: rawData, error, loading } = useFetch(widget.dataUrl);
   const loaderComponentRef = useRef<ReactNode>(null);
+  const {
+    data: rawData,
+    error,
+    loading,
+  } = useDelayedFetch(widget.dataUrl, widget.dataFetchDelay ?? 0);
 
   // If we have an error, throw it to be caught by a widget error boundary
   if (error) {

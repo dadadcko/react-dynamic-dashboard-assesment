@@ -42,6 +42,13 @@ export interface WidgetConfigWithRemoteData extends WidgetConfig {
    * Supports nested keys using dot notation (e.g., 'data.items.0.name')
    */
   dataKey?: string;
+
+  /**
+   * Optional delay (in milliseconds) to simulate data fetching latency
+   *
+   * NOTE THIS IS ONLY FOR DEMO PURPOSES, in real applications, avoid artificial delays.
+   */
+  dataFetchDelay?: number;
 }
 
 /**
