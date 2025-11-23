@@ -14,7 +14,6 @@ const LazyRenderErrorComponent = lazy(
 interface WidgetComponentProps {
   config: WidgetConfig;
   height?: number;
-  onDelete?: () => void;
 }
 
 // Concrete renderer that uses the Dynamic widget type providers to render the final widget
@@ -23,12 +22,7 @@ const DynamicWidgetRenderer: FunctionComponent<{
   config: WidgetComponentProps["config"];
 }> = props => useChainedWidgetMapper()(props.config)?.render();
 
-export const Widget: FunctionComponent<WidgetComponentProps> = ({
-  config,
-  height = 250,
-  onDelete,
-}) => {
-  // BUG: Reset retry count when it actually succeeds to render
+export const Widget: FunctionComponent<WidgetComponentProps> = ({ config, height = 250 }) => {
   const [renderRetryCount, setRenderRetryCount] = useState(0);
 
   return (
@@ -50,7 +44,7 @@ export const Widget: FunctionComponent<WidgetComponentProps> = ({
               </Text>
             )}
           </div>
-          <WidgetSettingsMenuComponent onDelete={onDelete} />
+          <WidgetSettingsMenuComponent widget={config} />
         </Group>
         <Divider mt={4} />
       </Paper>

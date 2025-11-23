@@ -63,3 +63,20 @@ export interface Widget extends WidgetConfig {
    */
   render: () => ReactNode;
 }
+
+/**
+ * Interface defining actions that can be performed on widgets.
+ */
+export interface WidgetActions {
+  /**
+   * Callback invoked when a widget is deleted.
+   * @param widget - The widget being deleted.
+   */
+  onDelete?: (widget: WidgetConfig) => void;
+
+  /**
+   * Callback invoked when a widget is edited.
+   * @param widget - The widget being edited.
+   */
+  onEdit?: (widget: WidgetConfig) => void;
+}

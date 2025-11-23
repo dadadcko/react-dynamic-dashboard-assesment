@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { UnknownWidgetDynamicTypeProvider } from "@/widgets/core/unknown/provider.ts";
 import type { WidgetMapper } from "@/widgets/core/mapper.ts";
+import type { WidgetActions } from "@/widgets/core/widget.type.ts";
 
 /**
  * Provider interface for widgets.
@@ -21,3 +22,12 @@ export interface WidgetDynamicTypeProvider {
 export const WidgetDynamicTypeContext = createContext<WidgetDynamicTypeProvider[]>([
   UnknownWidgetDynamicTypeProvider,
 ]);
+
+/**
+ * Context to hold widget actions.
+ *
+ * By default, no actions are provided.
+ *
+ * This context allows for dynamic registration and retrieval of widget actions at runtime.
+ */
+export const WidgetActionsContext = createContext<WidgetActions>({});
