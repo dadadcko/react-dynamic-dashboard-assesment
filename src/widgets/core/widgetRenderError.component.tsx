@@ -26,7 +26,7 @@ export const WidgetRenderErrorComponent: FunctionComponent<WidgetRenderErrorComp
       </Box>
       <Text c="red">Error while rendering widget {!!retry && `(${retry + 1}x)`}</Text>
       <Text size="xs" c="dimmed" mb="xs">
-        Error details: {(error as Error)?.message ?? "Unknown error"}
+        {(error as Error)?.message ?? "Unknown error"}
       </Text>
 
       <Button disabled={retry >= maxRetries} variant="default" onClick={resetErrorBoundary}>

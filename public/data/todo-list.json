@@ -1,0 +1,37 @@
+[
+  {
+    "id": "random-uuid-1",
+    "task": "Buy groceries",
+    "completed": false
+  },
+  {
+    "id": "random-uuid-2",
+    "task": "Walk the dog",
+    "completed": false
+  },
+  {
+    "id": "random-uuid-3",
+    "task": "Read a book",
+    "completed": false
+  },
+  {
+    "id": "random-uuid-4",
+    "task": "Write code",
+    "completed": true
+  },
+  {
+    "id": "random-uuid-5",
+    "task": "Exercise",
+    "completed": false
+  },
+  {
+    "id": "random-uuid-6",
+    "task": "Call a friend",
+    "completed": false
+  },
+  {
+    "id": "random-uuid-7",
+    "task": "Clean the house",
+    "completed": true
+  }
+]

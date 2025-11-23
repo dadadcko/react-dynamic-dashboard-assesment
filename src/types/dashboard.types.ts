@@ -1,4 +1,4 @@
-import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
+import type { WidgetConfig, WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
 
 /**
  * Dynamic dashboard configuration interface.
@@ -37,8 +37,18 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
   // widgets: [] as WidgetConfig[],
   // TODO: REMOVE THIS TESTING DATA...
   widgets: [
-    { title: "Widget 1", type: "list", id: "1" },
-    { title: "Widget 2", type: "chart", id: "2", description: "This one has also description..." },
+    {
+      title: "Daily todos",
+      type: "todo-list",
+      id: "1",
+      dataUrl: "data/todo-list.json",
+    } as WidgetConfigWithRemoteData,
+    {
+      title: "Widget 2",
+      type: "chart",
+      id: "2",
+      description: "This one has also description...",
+    },
     { title: "Widget 3", type: "table", id: "3" },
   ],
 };

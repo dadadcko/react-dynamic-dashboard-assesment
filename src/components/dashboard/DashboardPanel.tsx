@@ -11,8 +11,8 @@ export const DashboardPanel: FunctionComponent = () => {
 
   return (
     <Grid align="flex-start" columns={panelColumns} overflow="hidden" grow>
-      {widgets.map((widgetConfig, index) => (
-        <Grid.Col key={index} span={{ base: panelColumns, md: panelColumns / 2, lg: 1 }}>
+      {widgets.map(widgetConfig => (
+        <Grid.Col key={widgetConfig.id} span={{ base: panelColumns, md: panelColumns / 2, lg: 1 }}>
           {/* Render individual widgets */}
           <Widget
             config={widgetConfig}

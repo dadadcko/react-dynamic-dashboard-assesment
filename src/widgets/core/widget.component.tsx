@@ -28,6 +28,7 @@ export const Widget: FunctionComponent<WidgetComponentProps> = ({
   height = 250,
   onDelete,
 }) => {
+  // BUG: Reset retry count when it actually succeeds to render
   const [renderRetryCount, setRenderRetryCount] = useState(0);
 
   return (
@@ -35,26 +36,27 @@ export const Widget: FunctionComponent<WidgetComponentProps> = ({
       shadow="sm"
       withBorder
       h={height}
-      p={8}
       style={{ overflow: "auto", display: "flex", flexDirection: "column" }}>
       {/* Widget Header*/}
-      <Group justify="space-between" align="start">
-        <div>
-          <Title order={5} style={{ flex: 1 }}>
-            {config.title}
-          </Title>
-          {config.description && (
-            <Text size="xs" c="dimmed">
-              {config.description}
-            </Text>
-          )}
-        </div>
-        <WidgetSettingsMenuComponent onDelete={onDelete} />
-      </Group>
-      <Divider my="xs" />
+      <Paper shadow="xs" pos="sticky" radius="xs" top={0} style={{ zIndex: 1, boxShadow: "none" }}>
+        <Group justify="space-between" align="start" p={8} pb={4}>
+          <div>
+            <Title order={5} style={{ flex: 1 }}>
+              {config.title}
+            </Title>
+            {config.description && (
+              <Text size="xs" c="dimmed">
+                {config.description}
+              </Text>
+            )}
+          </div>
+          <WidgetSettingsMenuComponent onDelete={onDelete} />
+        </Group>
+        <Divider mt={4} />
+      </Paper>
 
       {/* Widget Dynamic Content with error boundary and loading state */}
-      <Center flex={1}>
+      <Center flex={1} px={8} py={4}>
         <ErrorBoundary
           fallbackRender={props => <LazyRenderErrorComponent {...props} retry={renderRetryCount} />}
           onReset={() => setRenderRetryCount(count => count + 1)}>

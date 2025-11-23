@@ -25,9 +25,29 @@ export interface WidgetConfig {
 }
 
 /**
+ * Widget configuration interface for widgets that fetch remote data.
+ *
+ * This extends {@link WidgetConfig} with additional
+ *   properties for remote data fetching.
+ */
+export interface WidgetConfigWithRemoteData extends WidgetConfig {
+  /**
+   * URL to fetch remote data for the widget
+   */
+  dataUrl: string;
+
+  /**
+   * Key to select specific data from the fetched response
+   *
+   * Supports nested keys using dot notation (e.g., 'data.items.0.name')
+   */
+  dataKey?: string;
+}
+
+/**
  * Widget runtime interface.
  *
- * This is built from WidgetConfig with additional runtime properties.
+ * This is built from {@link WidgetConfig} with additional runtime properties.
  */
 export interface Widget extends WidgetConfig {
   /**

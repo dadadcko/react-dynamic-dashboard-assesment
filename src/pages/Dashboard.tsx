@@ -5,6 +5,7 @@ import { DashboardPanel } from "@/components/dashboard/DashboardPanel.tsx";
 import { useUrlParam } from "@/hooks/useUrlParam.ts";
 import { createDashboardStore } from "@/store/dashboard.store.ts";
 import { DashboardStoreContext } from "@/contexts/DashboardStoreContext.ts";
+import { TodoListWidgetTypeContextProvider } from "@/widgets/todoList/provider.tsx";
 
 const defaultDashboardId = "Daniel's Personal Dashboard";
 
@@ -19,9 +20,12 @@ export function Dashboard() {
     <>
       {/* Provide the dashboard store to child components */}
       <DashboardStoreContext.Provider value={dashboardStoreRef.current}>
-        <DashboardHeader />
-        <Divider my="md" />
-        <DashboardPanel />
+        {/* Provide All supported widget types*/}
+        <TodoListWidgetTypeContextProvider>
+          <DashboardHeader />
+          <Divider my="md" />
+          <DashboardPanel />
+        </TodoListWidgetTypeContextProvider>
       </DashboardStoreContext.Provider>
     </>
   );
