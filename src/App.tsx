@@ -1,7 +1,7 @@
 import { Anchor, AppShell, Avatar, Center, Group, Text } from "@mantine/core";
 import { ThemeSwapperButton } from "@/components/ThemeSwapperButton";
 import { StretchableContainer } from "@/components/StretchableContainer";
-import { Dashboard } from "@/pages/Dashboard.tsx";
+import { DashboardComponent } from "@/dashboard/dashboard.component.tsx";
 
 export function App() {
   return (
@@ -23,7 +23,7 @@ export function App() {
       <AppShell.Main>
         <StretchableContainer>
           {/* In real app, this is the place for root Router outlet */}
-          <Dashboard />
+          <DashboardComponent />
         </StretchableContainer>
       </AppShell.Main>
 

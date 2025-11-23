@@ -1,8 +1,8 @@
-import { type DashboardConfig, DEFAULT_DASHBOARD_CONFIG } from "@/types/dashboard.types.ts";
 import { createStore, type StateCreator, type StoreApi } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 import { arrayMove } from "@dnd-kit/sortable";
+import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
+import { type DashboardConfig, DEFAULT_DASHBOARD_CONFIG } from "@/dashboard/dashboard.type.ts";
 
 /**
  * State for Dashboard module.

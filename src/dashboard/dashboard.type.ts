@@ -1,6 +1,6 @@
 import type { WidgetConfig, WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
-import type { TableWidgetConfig } from "@/widgets/table/widget.type.ts";
 import type { ChartWidgetConfig } from "@/widgets/chart/widget.type.ts";
+import type { TableWidgetConfig } from "@/widgets/table/widget.type.ts";
 
 /**
  * Dynamic dashboard configuration interface.

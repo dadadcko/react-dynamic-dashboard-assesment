@@ -1,17 +1,17 @@
 import { Divider } from "@mantine/core";
 import { useRef } from "react";
-import { DashboardHeader } from "@/components/dashboard/DashboardHeader.tsx";
-import { DashboardPanel } from "@/components/dashboard/DashboardPanel.tsx";
 import { useUrlParam } from "@/hooks/useUrlParam.ts";
-import { createDashboardStore } from "@/store/dashboard.store.ts";
-import { DashboardStoreContext } from "@/contexts/DashboardStoreContext.ts";
 import { TodoListWidgetTypeContextProvider } from "@/widgets/todoList/provider.tsx";
 import { TableWidgetTypeContextProvider } from "@/widgets/table/provider.tsx";
 import { ChartWidgetTypeContextProvider } from "@/widgets/chart/provider.tsx";
+import { createDashboardStore } from "@/dashboard/store.ts";
+import { DashboardStoreContext } from "@/dashboard/context.ts";
+import { DashboardHeaderComponent } from "@/dashboard/dashboardHeader.component.tsx";
+import { DashboardPanelComponent } from "@/dashboard/dashboardPanel.component.tsx";
 
 const defaultDashboardId = "Daniel's Personal Dashboard";
 
-export function Dashboard() {
+export function DashboardComponent() {
   const dashboardId = useUrlParam("dashboard", defaultDashboardId);
   const dashboardStoreRef = useRef<ReturnType<typeof createDashboardStore>>(null);
 
@@ -26,9 +26,9 @@ export function Dashboard() {
         <TodoListWidgetTypeContextProvider>
           <TableWidgetTypeContextProvider>
             <ChartWidgetTypeContextProvider>
-              <DashboardHeader />
+              <DashboardHeaderComponent />
               <Divider my="md" />
-              <DashboardPanel />
+              <DashboardPanelComponent />
             </ChartWidgetTypeContextProvider>
           </TableWidgetTypeContextProvider>
         </TodoListWidgetTypeContextProvider>

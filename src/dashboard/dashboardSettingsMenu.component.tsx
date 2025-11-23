@@ -13,9 +13,9 @@ import {
   IconUpload,
 } from "@tabler/icons-react";
 import { useStretchableContainer } from "@/hooks/useStretchableContainer.ts";
-import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
+import { useDashboardStore } from "@/dashboard/context.ts";
 
-export const DashboardSettingsMenu: FunctionComponent = () => {
+export const DashboardSettingsMenuComponent: FunctionComponent = () => {
   const isFluid = useStretchableContainer(x => x.isFluid);
   const setFluid = useStretchableContainer(x => x.setFluid);
   const clearWidgets = useDashboardStore(s => s.clearWidgets);

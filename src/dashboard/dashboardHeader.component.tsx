@@ -1,9 +1,9 @@
 import type { FunctionComponent } from "react";
 import { Group, Text, Title } from "@mantine/core";
-import { DashboardSettingsMenu } from "@/components/dashboard/DashboardSettingsMenu.tsx";
-import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
+import { useDashboardStore } from "@/dashboard/context.ts";
+import { DashboardSettingsMenuComponent } from "@/dashboard/dashboardSettingsMenu.component.tsx";
 
-export const DashboardHeader: FunctionComponent = () => {
+export const DashboardHeaderComponent: FunctionComponent = () => {
   const title = useDashboardStore(s => s.title);
   const widgets = useDashboardStore(s => s.widgets);
 
@@ -18,7 +18,7 @@ export const DashboardHeader: FunctionComponent = () => {
 
       {/* Settings menu */}
       <Group justify="flex-end" pt="xs" style={{ flexGrow: 1 }}>
-        <DashboardSettingsMenu />
+        <DashboardSettingsMenuComponent />
       </Group>
     </Group>
   );

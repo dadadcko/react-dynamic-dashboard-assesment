@@ -1,7 +1,13 @@
-import { useContext } from "react";
-import { DashboardStoreContext } from "@/contexts/DashboardStoreContext.ts";
+import { createContext, useContext } from "react";
+import type { createDashboardStore, DashboardStore } from "@/dashboard/store.ts";
 import { useStore } from "zustand";
-import type { DashboardStore } from "@/store/dashboard.store.ts";
+
+/**
+ * Context to hold the dashboard store.
+ */
+export const DashboardStoreContext = createContext<ReturnType<typeof createDashboardStore> | null>(
+  null,
+);
 
 const sentinelErrorMessage =
   "Missing DashboardStoreContext.Provider in the component tree. This hook can only be used within Dashboard context";

@@ -1,6 +1,5 @@
 import type { FunctionComponent } from "react";
-import { Grid } from "@mantine/core";
-import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
+import { Grid, Text } from "@mantine/core";
 import { WidgetActionsContext } from "@/widgets/core/context.ts";
 import {
   closestCenter,
@@ -15,8 +14,9 @@ import { SortableContext, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 import { DndWidgetComponent } from "@/widgets/core/dndWidget.component.tsx";
 import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 import type { WidgetActions } from "@/widgets/core/widget.type.ts";
+import { useDashboardStore } from "@/dashboard/context.ts";
 
-export const DashboardPanel: FunctionComponent = () => {
+export const DashboardPanelComponent: FunctionComponent = () => {
   // Store State
   const panelColumns = useDashboardStore(s => s.panelColumns);
   const widgetHeight = useDashboardStore(s => s.widgetHeight);
@@ -63,7 +63,12 @@ export const DashboardPanel: FunctionComponent = () => {
         },
       };
 
-  return (
+  return widgets.length === 0 ? (
+    // Empty dashboard state
+    <Text ta="center" c="dimmed" p={16}>
+      No widgets in dashboard. Start by adding some!
+    </Text>
+  ) : (
     <Grid align="flex-start" columns={panelColumns} overflow="hidden">
       {/* Enables Sorting of widgets */}
       <DndContext
