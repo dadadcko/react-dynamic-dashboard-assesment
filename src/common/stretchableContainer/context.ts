@@ -1,7 +1,16 @@
-import { useContext } from "react";
-import { ContainerStretchContext } from "@/contexts/ContainerStretchContext";
+import { createContext, useContext } from "react";
+import type {
+  ContainerStretchStore,
+  createStretchableContainerStore,
+} from "@/common/stretchableContainer/store.ts";
 import { useStore } from "zustand";
-import type { ContainerStretchStore } from "@/store/stretchableContainer.store.ts";
+
+/**
+ * Context to manage container stretch state
+ */
+export const ContainerStretchContext = createContext<ReturnType<
+  typeof createStretchableContainerStore
+> | null>(null);
 
 const sentinelErrorMessage =
   "Missing ContainerStretchContext.Provider in the component tree. This hook can only be used within ContainerStretchContext";

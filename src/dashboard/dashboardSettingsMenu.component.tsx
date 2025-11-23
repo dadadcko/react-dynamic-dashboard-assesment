@@ -12,8 +12,8 @@ import {
   IconTrashX,
   IconUpload,
 } from "@tabler/icons-react";
-import { useStretchableContainer } from "@/hooks/useStretchableContainer.ts";
 import { useDashboardStore } from "@/dashboard/context.ts";
+import { useStretchableContainer } from "@/common/stretchableContainer/context.ts";
 
 export const DashboardSettingsMenuComponent: FunctionComponent = () => {
   const isFluid = useStretchableContainer(x => x.isFluid);

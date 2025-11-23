@@ -1,7 +1,7 @@
 import { Anchor, AppShell, Avatar, Center, Group, Text } from "@mantine/core";
 import { ThemeSwapperButton } from "@/components/ThemeSwapperButton";
-import { StretchableContainer } from "@/components/StretchableContainer";
 import { DashboardComponent } from "@/dashboard/dashboard.component.tsx";
+import { StretchableContainer } from "@/common/stretchableContainer/stretchableContainer.component.tsx";
 
 export function App() {
   return (

@@ -1,8 +1,10 @@
 import { type FunctionComponent, type PropsWithChildren, useRef } from "react";
-import { ContainerStretchContext } from "@/contexts/ContainerStretchContext";
 import { Container } from "@mantine/core";
-import { createStretchableContainerStore } from "@/store/stretchableContainer.store.ts";
-import { useStretchableContainer } from "@/hooks/useStretchableContainer.ts";
+import { createStretchableContainerStore } from "@/common/stretchableContainer/store.ts";
+import {
+  ContainerStretchContext,
+  useStretchableContainer,
+} from "@/common/stretchableContainer/context.ts";
 
 interface StretchableContainerProps extends PropsWithChildren {
   id?: string;
