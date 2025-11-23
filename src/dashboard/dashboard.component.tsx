@@ -1,6 +1,6 @@
 import { Divider } from "@mantine/core";
 import { useRef } from "react";
-import { useUrlParam } from "@/hooks/useUrlParam.ts";
+import { useUrlParam } from "@/common/useUrlParam.hook.ts";
 import { TodoListWidgetTypeContextProvider } from "@/widgets/todoList/provider.tsx";
 import { TableWidgetTypeContextProvider } from "@/widgets/table/provider.tsx";
 import { ChartWidgetTypeContextProvider } from "@/widgets/chart/provider.tsx";

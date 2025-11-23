@@ -3,7 +3,7 @@ import { cleanup, render } from "@testing-library/react";
 
 import "@testing-library/jest-dom/vitest";
 import { createElement, type ReactNode } from "react";
-import { MantineThemeProvider } from "./MantineThemeProvider.tsx";
+import { MantineThemeProvider } from "@/common/mantineTheme.provider.tsx";
 
 function setupMocksForMantine() {
   const gcs = window.getComputedStyle;

@@ -2,7 +2,7 @@ import { createElement, type FunctionComponent, type ReactNode, useRef } from "r
 import type { WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
 import { getByPath } from "@/utils/path.utils.ts";
 import { Flex, Loader, Text } from "@mantine/core";
-import { useDelayedFetch } from "@/hooks/useDelayedFetch.ts";
+import { useDelayedFetch } from "@/common/useDelayedFetch.hook.ts";
 
 const dataKeyNotValidError = (dataKey: string) =>
   new Error(`Could not extract data using dataKey: ${dataKey ? dataKey : "<empty>"}`);

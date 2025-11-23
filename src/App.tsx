@@ -1,5 +1,5 @@
 import { Anchor, AppShell, Avatar, Center, Group, Text } from "@mantine/core";
-import { ThemeSwapperButton } from "@/components/ThemeSwapperButton";
+import { ThemeSwapperButtonComponent } from "@/common/themeSwapperButton.component.tsx";
 import { DashboardComponent } from "@/dashboard/dashboard.component.tsx";
 import { StretchableContainer } from "@/common/stretchableContainer/stretchableContainer.component.tsx";
 
@@ -13,7 +13,7 @@ export function App() {
             🚀 Dynamic dashboard App
           </Text>
           <Group wrap="nowrap" gap="sm">
-            <ThemeSwapperButton />
+            <ThemeSwapperButtonComponent />
             <Avatar size="md" />
           </Group>
         </Group>
