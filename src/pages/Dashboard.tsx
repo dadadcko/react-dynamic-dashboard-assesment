@@ -6,6 +6,7 @@ import { useUrlParam } from "@/hooks/useUrlParam.ts";
 import { createDashboardStore } from "@/store/dashboard.store.ts";
 import { DashboardStoreContext } from "@/contexts/DashboardStoreContext.ts";
 import { TodoListWidgetTypeContextProvider } from "@/widgets/todoList/provider.tsx";
+import { TableWidgetTypeContextProvider } from "@/widgets/table/provider.tsx";
 
 const defaultDashboardId = "Daniel's Personal Dashboard";
 
@@ -22,9 +23,11 @@ export function Dashboard() {
       <DashboardStoreContext.Provider value={dashboardStoreRef.current}>
         {/* Provide All supported widget types*/}
         <TodoListWidgetTypeContextProvider>
-          <DashboardHeader />
-          <Divider my="md" />
-          <DashboardPanel />
+          <TableWidgetTypeContextProvider>
+            <DashboardHeader />
+            <Divider my="md" />
+            <DashboardPanel />
+          </TableWidgetTypeContextProvider>
         </TodoListWidgetTypeContextProvider>
       </DashboardStoreContext.Provider>
     </>

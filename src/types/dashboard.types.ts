@@ -1,4 +1,5 @@
 import type { WidgetConfig, WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
+import type { TableWidgetConfig } from "@/widgets/table/widget.type.ts";
 
 /**
  * Dynamic dashboard configuration interface.
@@ -56,6 +57,19 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
       id: "2",
       description: "This one has also description...",
     },
-    { title: "Widget 3", type: "table", id: "3" },
+    {
+      id: "3",
+      title: "Monthly Expenses",
+      type: "table",
+      dataUrl: "data/table.json",
+      dataFetchDelay: 1500,
+      dataKey: "response.data",
+      stripped: true,
+      columns: [
+        { key: "date", label: "Date" },
+        { key: "category", label: "Category" },
+        { key: "amount", label: "Amount" },
+      ],
+    } as TableWidgetConfig,
   ],
 };

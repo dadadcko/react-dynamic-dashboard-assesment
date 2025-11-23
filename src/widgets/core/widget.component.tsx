@@ -32,6 +32,7 @@ export const Widget: FunctionComponent<WidgetComponentProps> = ({ config, height
       h={height}
       style={{ overflow: "auto", display: "flex", flexDirection: "column" }}>
       {/* Widget Header*/}
+      {/* BUG: Header is not stretching when content overflows on X */}
       <Paper shadow="xs" pos="sticky" radius="xs" top={0} style={{ zIndex: 1, boxShadow: "none" }}>
         <Group justify="space-between" align="start" p={8} pb={4}>
           <div>
