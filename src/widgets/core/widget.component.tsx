@@ -7,9 +7,7 @@ import { WidgetSkeletonComponent } from "@/widgets/core/widgetSkeleton.component
 import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 
 // Lazy load the error component to optimize initial load
-const LazyRenderErrorComponent = lazy(
-  () => import("@/widgets/core/widgetRenderError.component.tsx"),
-);
+const LazyRenderErrorComponent = lazy(() => import("@/common/renderError.component.tsx"));
 
 export interface WidgetComponentProps {
   config: WidgetConfig;
@@ -53,7 +51,9 @@ export const Widget: FunctionComponent<WidgetComponentProps> = ({ config, height
       {/* Widget Dynamic Content with error boundary and loading state */}
       <Center flex={1} px={8} py={4}>
         <ErrorBoundary
-          fallbackRender={props => <LazyRenderErrorComponent {...props} retry={renderRetryCount} />}
+          fallbackRender={props => (
+            <LazyRenderErrorComponent {...props} retry={renderRetryCount} resourceName="Widget" />
+          )}
           onReset={() => setRenderRetryCount(count => count + 1)}>
           <Suspense fallback={<WidgetSkeletonComponent />}>
             <DynamicWidgetRenderer config={config} />

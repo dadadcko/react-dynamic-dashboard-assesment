@@ -2,7 +2,10 @@ import { WidgetDynamicTypeContextProvider } from "@/widgets/core/context.provide
 import type { FunctionComponent, PropsWithChildren } from "react";
 import { TodoListWidgetMapper } from "@/widgets/todoList/mapper.ts";
 import type { WidgetDynamicTypeProvider } from "@/widgets/core/context.ts";
-import { TODO_LIST_WIDGET_TYPE } from "@/widgets/todoList/widget.type.ts";
+import {
+  TODO_LIST_WIDGET_TYPE,
+  type TodoListWidgetConfig,
+} from "@/widgets/todoList/widget.type.ts";
 import { IconCheckbox } from "@tabler/icons-react";
 
 /**
@@ -16,6 +19,13 @@ const TodoListWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
     description: "Display a list of tasks with checkboxes",
     icon: () => IconCheckbox,
   },
+  createNew: () =>
+    ({
+      type: TODO_LIST_WIDGET_TYPE,
+      id: null!, // ID to be assigned when the widget is added to a dashboard
+      title: null!,
+      dataUrl: null!,
+    }) satisfies TodoListWidgetConfig,
 };
 
 /**

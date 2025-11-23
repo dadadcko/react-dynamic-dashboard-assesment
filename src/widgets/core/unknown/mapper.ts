@@ -1,6 +1,6 @@
 import type { WidgetMapper } from "@/widgets/core/mapper.ts";
 import { createElement, lazy } from "react";
-import type { UnknownWidget } from "@/widgets/core/unknown/widget.type.ts";
+import { UNKNOWN_WIDGET_TYPE, type UnknownWidget } from "@/widgets/core/unknown/widget.type.ts";
 
 // Lazy load the UnknownWidget component
 const lazyComponent = lazy(() => import("./widget.component.tsx"));
@@ -17,7 +17,7 @@ const lazyComponent = lazy(() => import("./widget.component.tsx"));
 export const UnknownWidgetMapper: WidgetMapper = config => {
   const widget: UnknownWidget = {
     ...config,
-    type: "unknown",
+    type: UNKNOWN_WIDGET_TYPE,
     originalType: config?.type ?? "not-specified",
 
     // Lazy load the UnknownWidget component

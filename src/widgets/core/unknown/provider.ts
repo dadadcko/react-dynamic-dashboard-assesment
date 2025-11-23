@@ -13,4 +13,9 @@ export const UnknownWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
     description: "A fallback widget, used when the specified widget type is not recognized.",
     hidden: true, // Hide from UI selections
   },
+  createNew: () => ({
+    id: null!, // ID to be assigned when the widget is added to a dashboard
+    type: UNKNOWN_WIDGET_TYPE,
+    title: null!,
+  }),
 };

@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { UnknownWidgetDynamicTypeProvider } from "@/widgets/core/unknown/provider.ts";
 import type { WidgetMapper } from "@/widgets/core/mapper.ts";
-import type { WidgetActions } from "@/widgets/core/widget.type.ts";
+import type { WidgetActions, WidgetConfig } from "@/widgets/core/widget.type.ts";
 import type { WidgetTypeMetadata } from "@/widgets/core/metadata.ts";
 
 /**
@@ -12,6 +12,7 @@ import type { WidgetTypeMetadata } from "@/widgets/core/metadata.ts";
 export interface WidgetDynamicTypeProvider {
   mapper: WidgetMapper;
   metadata: WidgetTypeMetadata;
+  createNew: () => WidgetConfig;
 }
 
 /**

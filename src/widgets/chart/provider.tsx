@@ -2,7 +2,7 @@ import { WidgetDynamicTypeContextProvider } from "@/widgets/core/context.provide
 import type { FunctionComponent, PropsWithChildren } from "react";
 import { ChartWidgetMapper } from "@/widgets/chart/mapper.ts";
 import type { WidgetDynamicTypeProvider } from "@/widgets/core/context.ts";
-import { CHART_WIDGET_TYPE } from "@/widgets/chart/widget.type.ts";
+import { CHART_WIDGET_TYPE, type ChartWidgetConfig } from "@/widgets/chart/widget.type.ts";
 import { IconChartBar } from "@tabler/icons-react";
 
 /**
@@ -16,6 +16,15 @@ const ChartWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
     description: "Visualize data with line, bar, or area charts",
     icon: () => IconChartBar,
   },
+  createNew: () =>
+    ({
+      type: CHART_WIDGET_TYPE,
+      id: null!, // ID to be assigned when the widget is added to a dashboard
+      title: null!,
+      dataUrl: null!,
+      xAxisKey: null!,
+      series: [],
+    }) satisfies ChartWidgetConfig,
 };
 
 /**
