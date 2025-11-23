@@ -24,6 +24,7 @@ export const DashboardPanelComponent: FunctionComponent = () => {
   const isLocked = useDashboardStore(s => s.locked);
 
   // Store Actions
+  const saveWidget = useDashboardStore(s => s.saveWidget);
   const deleteWidget = useDashboardStore(s => s.deleteWidget);
   const moveWidget = useDashboardStore(s => s.moveWidget);
 
@@ -57,10 +58,7 @@ export const DashboardPanelComponent: FunctionComponent = () => {
     ? {}
     : {
         onDelete: w => deleteWidget(w.id),
-        // TODO: implement edit functionality
-        onEdit: () => {
-          throw new Error("Edit functionality not implemented yet");
-        },
+        onSave: w => saveWidget(w),
       };
 
   return widgets.length === 0 ? (

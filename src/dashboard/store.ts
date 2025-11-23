@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { arrayMove } from "@dnd-kit/sortable";
 import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 import { type DashboardConfig, DEFAULT_DASHBOARD_CONFIG } from "@/dashboard/dashboard.type.ts";
+import { v7 as uuidV7 } from "uuid";
 
 /**
  * State for Dashboard module.
@@ -13,6 +14,7 @@ export type DashboardState = DashboardConfig;
  * Actions for Dashboard module.
  */
 export interface DashboardActions {
+  saveWidget: (widget: WidgetConfig) => void;
   deleteWidget: (id: WidgetConfig["id"]) => void;
   clearWidgets: () => void;
   toggleLock: () => void;
@@ -42,6 +44,39 @@ export function createDashboardStore(props: DashboardStoreFactoryProps): StoreAp
     title: dashboardId,
 
     // Actions
+    /**
+     * Saves (adds or edits) a widget in the dashboard.
+     * If a widget with the same ID exists, it will be edited.
+     * Otherwise, it will be added and unique ID will be assigned.
+     */
+    saveWidget: (widget: WidgetConfig) => {
+      const widgets = get().widgets;
+
+      const existingIdx = widgets.findIndex(w => w.id === widget.id);
+
+      const updatedWidgets = [...widgets];
+
+      if (existingIdx === -1) {
+        // New widget, assign unique ID
+        updatedWidgets.push({
+          ...widget,
+          id: uuidV7(),
+        });
+      } else {
+        // Existing widget, update it
+        updatedWidgets[existingIdx] = {
+          ...widgets[existingIdx],
+          ...widget,
+          id: widgets[existingIdx].id, // Preserve the original ID
+        };
+      }
+
+      set({
+        ...get(),
+        widgets: updatedWidgets,
+      });
+    },
+
     /**
      * Clears all widgets from the dashboard.
      */

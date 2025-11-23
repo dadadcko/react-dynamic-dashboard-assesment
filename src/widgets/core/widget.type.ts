@@ -75,8 +75,8 @@ export interface WidgetActions {
   onDelete?: (widget: WidgetConfig) => void;
 
   /**
-   * Callback invoked when a widget is edited.
-   * @param widget - The widget being edited.
+   * Callback invoked when a widget is changed and is meant to be saved.
+   * @param widget - The widget being saved.
    */
-  onEdit?: (widget: WidgetConfig) => void;
+  onSave?: (widget: WidgetConfig) => void;
 }

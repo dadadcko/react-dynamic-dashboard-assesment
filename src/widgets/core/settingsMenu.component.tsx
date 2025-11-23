@@ -9,7 +9,7 @@ interface WidgetSettingsMenuProps {
 }
 
 export function WidgetSettingsMenuComponent({ widget }: WidgetSettingsMenuProps) {
-  const { onDelete, onEdit } = useContext(WidgetActionsContext);
+  const { onDelete, onSave } = useContext(WidgetActionsContext);
 
   // Only define actions that have corresponding handlers
   const actions = [
@@ -17,7 +17,7 @@ export function WidgetSettingsMenuComponent({ widget }: WidgetSettingsMenuProps)
       label: "Edit widget",
       Icon: IconEdit,
       color: undefined,
-      action: onEdit ? () => onEdit(widget) : null,
+      action: onSave ? () => onSave(widget) : null,
     },
     {
       label: "Delete widget",
