@@ -7,6 +7,7 @@ import { createDashboardStore } from "@/store/dashboard.store.ts";
 import { DashboardStoreContext } from "@/contexts/DashboardStoreContext.ts";
 import { TodoListWidgetTypeContextProvider } from "@/widgets/todoList/provider.tsx";
 import { TableWidgetTypeContextProvider } from "@/widgets/table/provider.tsx";
+import { ChartWidgetTypeContextProvider } from "@/widgets/chart/provider.tsx";
 
 const defaultDashboardId = "Daniel's Personal Dashboard";
 
@@ -24,9 +25,11 @@ export function Dashboard() {
         {/* Provide All supported widget types*/}
         <TodoListWidgetTypeContextProvider>
           <TableWidgetTypeContextProvider>
-            <DashboardHeader />
-            <Divider my="md" />
-            <DashboardPanel />
+            <ChartWidgetTypeContextProvider>
+              <DashboardHeader />
+              <Divider my="md" />
+              <DashboardPanel />
+            </ChartWidgetTypeContextProvider>
           </TableWidgetTypeContextProvider>
         </TodoListWidgetTypeContextProvider>
       </DashboardStoreContext.Provider>

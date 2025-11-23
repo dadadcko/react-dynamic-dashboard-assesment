@@ -1,5 +1,6 @@
 import type { WidgetConfig, WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
 import type { TableWidgetConfig } from "@/widgets/table/widget.type.ts";
+import type { ChartWidgetConfig } from "@/widgets/chart/widget.type.ts";
 
 /**
  * Dynamic dashboard configuration interface.
@@ -45,24 +46,33 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
   // TODO: REMOVE THIS TESTING DATA...
   widgets: [
     {
-      title: "Daily todos",
-      type: "todo-list",
       id: "1",
+      type: "todo-list",
+      title: "Daily todos",
       dataUrl: "data/todo-list.json",
-      dataFetchDelay: 2000,
+      dataFetchDelay: 500,
     } as WidgetConfigWithRemoteData,
     {
-      title: "Widget 2",
-      type: "chart",
       id: "2",
-      description: "This one has also description...",
-    },
+      type: "chart",
+      title: "Visitors Overview",
+      description: "Visitors overview of last year by month",
+      dataUrl: "data/chart.json",
+      dataFetchDelay: 2000,
+      xAxisKey: "label",
+      xAxisLabel: "Month",
+      yAxisLabel: "Visitors count",
+      series: [
+        { key: "total", color: "blue", label: "Visitors" },
+        { key: "unique.value", color: "green", label: "Unique Visitors" },
+      ],
+    } as ChartWidgetConfig,
     {
       id: "3",
       title: "Monthly Expenses",
       type: "table",
       dataUrl: "data/table.json",
-      dataFetchDelay: 1500,
+      dataFetchDelay: 1200,
       dataKey: "response.data",
       stripped: true,
       columns: [

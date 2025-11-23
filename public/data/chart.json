@@ -1,0 +1,86 @@
+[
+  {
+    "label": "January",
+    "total": 65,
+    "unique": {
+      "value": 30
+    }
+  },
+  {
+    "label": "February",
+    "total": 78,
+    "unique": {
+      "value": 45
+    }
+  },
+  {
+    "label": "March",
+    "total": 90,
+    "unique": {
+      "value": 50
+    }
+  },
+  {
+    "label": "April",
+    "total": 81,
+    "unique": {
+      "value": 40
+    }
+  },
+  {
+    "label": "May",
+    "total": 95,
+    "unique": {
+      "value": 55
+    }
+  },
+  {
+    "label": "June",
+    "total": 110,
+    "unique": {
+      "value": 60
+    }
+  },
+  {
+    "label": "July",
+    "total": 125,
+    "unique": {
+      "value": 70
+    }
+  },
+  {
+    "label": "August",
+    "total": 115,
+    "unique": {
+      "value": 65
+    }
+  },
+  {
+    "label": "September",
+    "total": 102,
+    "unique": {
+      "value": 50
+    }
+  },
+  {
+    "label": "October",
+    "total": 88,
+    "unique": {
+      "value": 45
+    }
+  },
+  {
+    "label": "November",
+    "total": 75,
+    "unique": {
+      "value": 35
+    }
+  },
+  {
+    "label": "December",
+    "total": 92,
+    "unique": {
+      "value": 48
+    }
+  }
+]
