@@ -11,7 +11,7 @@ const LazyRenderErrorComponent = lazy(
   () => import("@/widgets/core/widgetRenderError.component.tsx"),
 );
 
-interface WidgetComponentProps {
+export interface WidgetComponentProps {
   config: WidgetConfig;
   height?: number;
 }

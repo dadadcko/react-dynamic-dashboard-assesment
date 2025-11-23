@@ -1,32 +1,87 @@
 import type { FunctionComponent } from "react";
 import { Grid } from "@mantine/core";
 import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
-import { Widget } from "@/widgets/core/widget.component.tsx";
 import { WidgetActionsContext } from "@/widgets/core/context.ts";
+import {
+  closestCenter,
+  DndContext,
+  type DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { SortableContext, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
+import { DndWidgetComponent } from "@/widgets/core/dndWidget.component.tsx";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
+import type { WidgetActions } from "@/widgets/core/widget.type.ts";
 
 export const DashboardPanel: FunctionComponent = () => {
+  // Store State
   const panelColumns = useDashboardStore(s => s.panelColumns);
   const widgetHeight = useDashboardStore(s => s.widgetHeight);
   const widgets = useDashboardStore(s => s.widgets);
+  const isLocked = useDashboardStore(s => s.locked);
+
+  // Store Actions
   const deleteWidget = useDashboardStore(s => s.deleteWidget);
+  const moveWidget = useDashboardStore(s => s.moveWidget);
+
+  // Set up drag sensors
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+
+  // Handle drag and drop
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    // In this case nothing has changed
+    if (!(over && active.id !== over.id)) {
+      return;
+    }
+
+    const current = widgets.find(w => w.id === active.id);
+    if (!current) {
+      return;
+    }
+
+    const targetIndex = widgets.findIndex(w => w.id === over.id);
+    moveWidget(current, targetIndex);
+  }
+
+  // Bind widget actions to store functions
+  // Disable actions if dashboard is locked
+  const widgetActions: WidgetActions = isLocked
+    ? {}
+    : {
+        onDelete: w => deleteWidget(w.id),
+        // TODO: implement edit functionality
+        onEdit: () => {
+          throw new Error("Edit functionality not implemented yet");
+        },
+      };
 
   return (
-    <Grid align="flex-start" columns={panelColumns} overflow="hidden" grow>
-      {widgets.map(widgetConfig => (
-        <Grid.Col key={widgetConfig.id} span={{ base: panelColumns, md: panelColumns / 2, lg: 1 }}>
-          {/* Render individual widgets, with actions bound to store */}
-          <WidgetActionsContext.Provider
-            value={{
-              onDelete: w => deleteWidget(w.id),
-              // TODO: implement edit functionality
-              onEdit: () => {
-                throw new Error("Edit functionality not implemented yet");
-              },
-            }}>
-            <Widget config={widgetConfig} height={widgetHeight} />
-          </WidgetActionsContext.Provider>
-        </Grid.Col>
-      ))}
+    <Grid align="flex-start" columns={panelColumns} overflow="hidden">
+      {/* Enables Sorting of widgets */}
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        modifiers={[restrictToWindowEdges]}
+        onDragEnd={handleDragEnd}>
+        <SortableContext items={widgets}>
+          {widgets.map(widget => (
+            <Grid.Col key={widget.id} span={{ base: panelColumns, md: panelColumns / 2, lg: 1 }}>
+              {/* Render DnD widgets with their actions*/}
+              <WidgetActionsContext.Provider value={widgetActions}>
+                <DndWidgetComponent disabled={isLocked} config={widget} height={widgetHeight} />
+              </WidgetActionsContext.Provider>
+            </Grid.Col>
+          ))}
+        </SortableContext>
+      </DndContext>
     </Grid>
   );
 };

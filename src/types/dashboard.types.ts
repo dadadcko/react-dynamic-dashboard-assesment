@@ -25,6 +25,11 @@ export interface DashboardConfig {
   widgetHeight: number;
 
   /**
+   * Whether the dashboard is locked for editing (drag-and-drop disabled)
+   */
+  locked: boolean;
+
+  /**
    * Widget configurations included in the dashboard
    */
   widgets: WidgetConfig[];
@@ -34,6 +39,7 @@ export const DEFAULT_DASHBOARD_CONFIG: DashboardConfig = {
   title: "Unnamed Dashboard",
   panelColumns: 2,
   widgetHeight: 250,
+  locked: false,
   // widgets: [] as WidgetConfig[],
   // TODO: REMOVE THIS TESTING DATA...
   widgets: [

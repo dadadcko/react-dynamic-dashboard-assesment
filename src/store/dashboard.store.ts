@@ -2,6 +2,7 @@ import { type DashboardConfig, DEFAULT_DASHBOARD_CONFIG } from "@/types/dashboar
 import { createStore, type StateCreator, type StoreApi } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
+import { arrayMove } from "@dnd-kit/sortable";
 
 /**
  * State for Dashboard module.
@@ -14,6 +15,8 @@ export type DashboardState = DashboardConfig;
 export interface DashboardActions {
   deleteWidget: (id: WidgetConfig["id"]) => void;
   clearWidgets: () => void;
+  toggleLock: () => void;
+  moveWidget: (widget: WidgetConfig, toIndex: number) => void;
 }
 
 /**
@@ -62,6 +65,40 @@ export function createDashboardStore(props: DashboardStoreFactoryProps): StoreAp
           widgets: filteredWidgets,
         });
       }
+    },
+
+    /**
+     * Toggles the locked state of the dashboard.
+     */
+    toggleLock: () => {
+      set({
+        ...get(),
+        locked: !get().locked,
+      });
+    },
+
+    /**
+     * Moves a widget to a new index in the widgets array.
+     * @param widget - The widget to move.
+     * @param toIndex - The target index to move the widget to.
+     */
+    moveWidget: (widget: WidgetConfig, toIndex: number) => {
+      const widgets = get().widgets;
+      const currentIndex = widgets.findIndex(w => w.id === widget.id);
+
+      if (currentIndex === -1 || currentIndex === toIndex) {
+        return; // Widget not found or no move needed
+      }
+
+      // Check bounds of new index
+      if (toIndex < 0 || toIndex >= widgets.length) {
+        return; // Invalid index
+      }
+
+      set({
+        ...get(),
+        widgets: arrayMove(widgets, currentIndex, toIndex),
+      });
     },
   });
 

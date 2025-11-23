@@ -2,6 +2,8 @@ import type { FunctionComponent } from "react";
 import { Button, Menu, Tooltip } from "@mantine/core";
 import {
   IconDownload,
+  IconLock,
+  IconLockOpen2,
   IconMaximize,
   IconMinimize,
   IconPlus,
@@ -17,6 +19,8 @@ export const DashboardSettingsMenu: FunctionComponent = () => {
   const isFluid = useStretchableContainer(x => x.isFluid);
   const setFluid = useStretchableContainer(x => x.setFluid);
   const clearWidgets = useDashboardStore(s => s.clearWidgets);
+  const isLocked = useDashboardStore(s => s.locked);
+  const toggleLock = useDashboardStore(s => s.toggleLock);
 
   return (
     <Menu shadow="md">
@@ -35,6 +39,11 @@ export const DashboardSettingsMenu: FunctionComponent = () => {
         <Menu.Item leftSection={<IconPlus size={14} />}>Add Widget</Menu.Item>
         <Menu.Item leftSection={<IconUpload size={14} />}>Import</Menu.Item>
         <Menu.Item leftSection={<IconDownload size={14} />}>Export</Menu.Item>
+        <Menu.Item
+          leftSection={isLocked ? <IconLockOpen2 size={14} /> : <IconLock size={14} />}
+          onClick={toggleLock}>
+          {isLocked ? "Unlock" : "Lock"}
+        </Menu.Item>
 
         <Menu.Divider />
         <Menu.Label>Display</Menu.Label>
