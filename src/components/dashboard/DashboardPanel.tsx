@@ -1,7 +1,7 @@
 import type { FunctionComponent } from "react";
 import { Grid } from "@mantine/core";
-import { Widget } from "@/components/widget/Widget.tsx";
 import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
+import { Widget } from "@/widgets/core/widget.component.tsx";
 
 export const DashboardPanel: FunctionComponent = () => {
   const panelColumns = useDashboardStore(s => s.panelColumns);

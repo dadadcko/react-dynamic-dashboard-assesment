@@ -5,7 +5,7 @@ interface WidgetSettingsMenuProps {
   onDelete?: () => void;
 }
 
-export function WidgetSettingsMenu({ onDelete }: WidgetSettingsMenuProps) {
+export function WidgetSettingsMenuComponent({ onDelete }: WidgetSettingsMenuProps) {
   return (
     <Menu shadow="md">
       <Menu.Target>

@@ -1,4 +1,4 @@
-import type { WidgetConfig } from "@/types/widget.types.ts";
+import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 
 /**
  * Dynamic dashboard configuration interface.

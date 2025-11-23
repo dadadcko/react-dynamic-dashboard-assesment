@@ -14,7 +14,8 @@ import { useStretchableContainer } from "@/hooks/useStretchableContainer.ts";
 import { useDashboardStore } from "@/hooks/useDashboardStore.ts";
 
 export const DashboardSettingsMenu: FunctionComponent = () => {
-  const { isFluid, setFluid } = useStretchableContainer();
+  const isFluid = useStretchableContainer(x => x.isFluid);
+  const setFluid = useStretchableContainer(x => x.setFluid);
   const clearWidgets = useDashboardStore(s => s.clearWidgets);
 
   return (

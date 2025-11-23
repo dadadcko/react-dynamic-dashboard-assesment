@@ -1,7 +1,7 @@
 import { type DashboardConfig, DEFAULT_DASHBOARD_CONFIG } from "@/types/dashboard.types.ts";
-import type { WidgetConfig } from "@/types/widget.types.ts";
 import { createStore, type StateCreator, type StoreApi } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 
 /**
  * State for Dashboard module.

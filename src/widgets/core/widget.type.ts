@@ -1,4 +1,3 @@
-import type { WidgetRenderer } from "@/services/WidgetRenderer.ts";
 import type { ReactNode } from "react";
 
 export interface WidgetConfig {
@@ -26,14 +25,14 @@ export interface WidgetConfig {
 }
 
 /**
- * Widget interface, ready to be rendered.
+ * Widget runtime interface.
+ *
  * This is built from WidgetConfig with additional runtime properties.
  */
 export interface Widget extends WidgetConfig {
   /**
-   * Accept a renderer to render this widget
-   * (aka the "accept" method in visitor pattern)
-   * @param renderer - The widget renderer to use
+   * Renderer function for the widget.
+   * @returns A ReactNode representing the widget's UI.
    */
-  accept: (renderer: WidgetRenderer) => ReactNode;
+  render: () => ReactNode;
 }
