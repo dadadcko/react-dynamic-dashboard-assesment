@@ -1,61 +1,34 @@
-import { type FunctionComponent, useCallback, useEffect, useState } from "react";
+import { createElement, type FunctionComponent } from "react";
 import type { TodoListItem, TodoListWidget } from "@/widgets/todoList/widget.type.ts";
 import { List, ThemeIcon } from "@mantine/core";
-import { getByPath } from "@/utils/path.utils.ts";
 import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
+import {
+  WidgetWithRemoteDataComponent,
+  type WidgetWithRemoteDataProps,
+} from "@/widgets/core/widgetWithRemoteData.component.tsx";
 
 interface TodoListWidgetComponentProps {
   widget: TodoListWidget;
 }
 
-const dataKeyNotValidError = (dataKey: string) =>
-  new Error(`Could not extract data using dataKey: ${dataKey ? dataKey : "<empty>"}`);
-
 /**
  * UI for TodoList widget type
+ *
+ * Uses {@link WidgetWithRemoteDataComponent} HOC to fetch data, then passes it to the actual todoList UI
  */
-export const TodoListWidgetComponent: FunctionComponent<TodoListWidgetComponentProps> = ({
-  widget,
-}) => {
-  if (!widget.dataUrl) {
-    throw new Error("dataUrl is missing for TodoListWidget");
-  }
+export const TodoListWidgetComponent: FunctionComponent<TodoListWidgetComponentProps> = props =>
+  createElement(WidgetWithRemoteDataComponent<TodoListWidget, TodoListItem[]>, {
+    ...props,
+    child: TodoListWidgetComponent_,
+  });
 
-  // TODO: Move to a custom hook
-  const [data, setData] = useState<TodoListItem[] | null>(null);
-  const [error, setError] = useState<Error | null>(null);
-
-  const loadData = useCallback(() => {
-    const dataKey = widget.dataKey ?? "";
-    const data = fetch(widget.dataUrl)
-      .then(res => res.json())
-      .then(json => getByPath<TodoListItem[]>(json, dataKey))
-      .then(maybeItems => maybeItems ?? Promise.reject(dataKeyNotValidError(dataKey)));
-
-    data.then(items => setData(items)).catch(err => setError(err as Error));
-  }, [widget.dataUrl, widget.dataKey]);
-
-  useEffect(loadData, [loadData]);
-
-  // Not loaded yet
-  if (!data && !error) {
-    return;
-  }
-
-  if (error) {
-    throw error;
-  }
-
-  // try to extract items from data using dataKey
-  const dataKey = widget.dataKey ?? "";
-  const todoItems = getByPath<TodoListItem[]>(data, dataKey);
-  if (!todoItems) {
-    throw dataKeyNotValidError(dataKey);
-  }
-
+// Actual component that receives the fetched data as prop from HOC above
+const TodoListWidgetComponent_: FunctionComponent<
+  WidgetWithRemoteDataProps<TodoListWidget, TodoListItem[]>
+> = ({ data }) => {
   return (
     <List w="100%">
-      {todoItems.map(item => (
+      {data.map(item => (
         <List.Item
           py={8}
           key={item.id}
