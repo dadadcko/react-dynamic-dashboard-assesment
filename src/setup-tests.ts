@@ -48,7 +48,14 @@ function setupMocksForMantine() {
  * @returns The result of the render function.
  */
 export function renderWithMantine(ui: ReactNode) {
-  return render(createElement(MantineThemeProvider, { env: "test" }, ui));
+  const wrappedUi = createElement(MantineThemeProvider, { env: "test" }, ui);
+
+  return render(wrappedUi, {
+    // @ts-ignore - ignore error boundary prop (not inferring correctly)
+    onCaughtError: () => {
+      /* empty */
+    },
+  });
 }
 
 setupMocksForMantine();
