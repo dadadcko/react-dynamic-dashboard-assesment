@@ -1,6 +1,0 @@
-@import "@mantine/core/styles.css";
-
-.text-no-overflow {
-  text-overflow: ellipsis;
-  overflow: hidden;
-}

@@ -8,7 +8,7 @@ export function App() {
     <AppShell padding="lg" header={{ height: 60 }} footer={{ height: 60 }}>
       {/* Header */}
       <AppShell.Header>
-        <Group wrap="nowrap" px="md" h="100%" justify="space-between" className="text-no-overflow">
+        <Group wrap="nowrap" px="md" h="100%" justify="space-between">
           <Text lineClamp={1} size="xl">
             🚀 Dynamic dashboard App
           </Text>
