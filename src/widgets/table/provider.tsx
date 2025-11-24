@@ -2,9 +2,16 @@ import { WidgetDynamicTypeContextProvider } from "@/widgets/core/context.provide
 import type { FunctionComponent, PropsWithChildren } from "react";
 import { TableWidgetMapper } from "@/widgets/table/mapper.ts";
 import type { WidgetDynamicTypeProvider } from "@/widgets/core/context.ts";
-import { TABLE_WIDGET_TYPE, type TableWidgetConfig } from "@/widgets/table/widget.type.ts";
+import {
+  TABLE_WIDGET_TYPE,
+  type TableWidgetColumnDefinition,
+  type TableWidgetConfig,
+} from "@/widgets/table/widget.type.ts";
 import { IconTable } from "@tabler/icons-react";
-import { CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS } from "@/widgets/core/forms/dynamicForm.types.ts";
+import {
+  CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS,
+  type DynamicFormField,
+} from "@/widgets/core/forms/dynamicForm.types.ts";
 
 /**
  * Dynamic Provider for Table widgets.
@@ -27,7 +34,7 @@ const TableWidgetDynamicTypeProvider: WidgetDynamicTypeProvider<TableWidgetConfi
     }) satisfies TableWidgetConfig,
   form: {
     fields: [
-      ...(CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS as never),
+      ...(CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS as DynamicFormField<TableWidgetConfig>[]),
       {
         key: "stripped",
         type: "boolean",
@@ -36,12 +43,29 @@ const TableWidgetDynamicTypeProvider: WidgetDynamicTypeProvider<TableWidgetConfi
         defaultValue: false,
       },
       {
-        // TODO: FIX COLUMNS FORM FIELD TYPE
         key: "columns",
         type: "array",
         label: "Columns",
         description: "Define the columns to display in the table",
         defaultValue: [],
+        items: [
+          {
+            key: "key",
+            type: "text",
+            label: "Column Key",
+            description:
+              "The key of the data field for this column. Supports nested keys using dot notation.",
+            validation: (value: string) => (!value?.trim() ? "Column key is required" : null),
+          },
+          {
+            key: "label",
+            type: "text",
+            label: "Column Label",
+            description: "The display label for this column",
+          },
+        ],
+        validation: (value: TableWidgetColumnDefinition[]) =>
+          value.length === 0 ? "At least one column is required" : null,
       },
     ],
   },

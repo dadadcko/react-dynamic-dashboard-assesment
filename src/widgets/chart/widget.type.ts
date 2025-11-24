@@ -2,7 +2,7 @@ import type { Widget, WidgetConfigWithRemoteData } from "@/widgets/core/widget.t
 
 export const CHART_WIDGET_TYPE = "chart";
 
-interface ChartDataSeriesDefinition {
+export interface ChartDataSeriesDefinition {
   /**
    * The key of the data series.
    * Supports nested keys using dot notation (e.g., 'data.items.0.name')

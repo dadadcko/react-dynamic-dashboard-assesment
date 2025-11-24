@@ -1,21 +1,21 @@
 import type { WidgetConfig, WidgetConfigWithRemoteData } from "@/widgets/core/widget.type.ts";
 
 /**
- * Defines the structure for a dynamic form for widget type
- */
-export interface WidgetDynamicFormConfiguration<T extends WidgetConfig> {
-  fields: readonly WidgetDynamicFormField<T>[];
-}
-
-/**
  * Union type for supported dynamic form field types
  */
-export type WidgetDynamicFormFieldType = "text" | "number" | "boolean" | "array";
+export type DynamicFormFieldType = "text" | "number" | "boolean" | "color" | "array";
 
 /**
- *  Defines a single field within a dynamic form for widget type
- *  */
-export interface WidgetDynamicFormField<T extends WidgetConfig, K extends keyof T = keyof T> {
+ * Defines a single field within a dynamic form for widget type
+ */
+export type DynamicFormField<T, K extends keyof T = keyof T> =
+  | DynamicFormFieldPrimitive<T, K>
+  | DynamicFormFieldArray<T, K>;
+
+/**
+ * Defines a primitive field within a dynamic form.
+ */
+export interface DynamicFormFieldPrimitive<T, K extends keyof T> {
   /**
    * The key of the field in the widget configuration
    */
@@ -24,7 +24,7 @@ export interface WidgetDynamicFormField<T extends WidgetConfig, K extends keyof 
   /**
    * Type of the form field
    */
-  type: WidgetDynamicFormFieldType;
+  type: DynamicFormFieldType;
 
   /**
    * User-friendly label for the field
@@ -44,7 +44,7 @@ export interface WidgetDynamicFormField<T extends WidgetConfig, K extends keyof 
   /**
    * Default value for the field
    */
-  defaultValue?: T[K];
+  defaultValue?: T[K] extends (infer U)[] ? U : T[K];
 
   /**
    * Validation function that takes the field value and returns an error message or null if valid
@@ -56,9 +56,33 @@ export interface WidgetDynamicFormField<T extends WidgetConfig, K extends keyof 
 }
 
 /**
+ * Defines an array field within a dynamic form.
+ */
+export type DynamicFormFieldArray<T, K extends keyof T> = DynamicFormFieldPrimitive<T, K> & {
+  type: "array";
+
+  /**
+   * Definition of nested dynamic form fields within the array
+   */
+  items: DynamicFormField<T[K] extends (infer U)[] ? U : never>[];
+};
+
+/**
+ *  Defines a single field within a dynamic form for widget type
+ */
+export type WidgetDynamicFormField<T extends WidgetConfig = WidgetConfig> = DynamicFormField<T>;
+
+/**
+ * Defines the structure for a dynamic form for widget type
+ */
+export interface WidgetDynamicFormConfiguration<T extends WidgetConfig = WidgetConfig> {
+  fields: WidgetDynamicFormField<T>[];
+}
+
+/**
  * Core dynamic form fields common to all widget types
  */
-export const CORE_WIDGET_DYNAMIC_FORM_FIELDS: WidgetDynamicFormField<WidgetConfig>[] = [
+export const CORE_WIDGET_DYNAMIC_FORM_FIELDS: WidgetDynamicFormField[] = [
   {
     key: "title",
     type: "text",
@@ -66,19 +90,19 @@ export const CORE_WIDGET_DYNAMIC_FORM_FIELDS: WidgetDynamicFormField<WidgetConfi
     placeholder: "e.g. Sales Overview",
     defaultValue: "",
     validation: (value: string) => (!value?.trim() ? "Title is required" : null),
-  } satisfies WidgetDynamicFormField<WidgetConfig, "title">,
+  } satisfies DynamicFormField<WidgetConfig, "title">,
   {
     key: "description",
     type: "text",
     label: "Widget Description",
     placeholder: "e.g. Displays sales data over time",
     defaultValue: "",
-  } satisfies WidgetDynamicFormField<WidgetConfig, "description">,
+  } satisfies DynamicFormField<WidgetConfig, "description">,
 ];
 
 export const CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS: WidgetDynamicFormField<WidgetConfigWithRemoteData>[] =
   [
-    ...(CORE_WIDGET_DYNAMIC_FORM_FIELDS as never), // Core fields type-checked above
+    ...(CORE_WIDGET_DYNAMIC_FORM_FIELDS as WidgetDynamicFormField<WidgetConfigWithRemoteData>[]),
     {
       key: "dataUrl",
       type: "text",
@@ -87,7 +111,7 @@ export const CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS: WidgetDynamicForm
       placeholder: "e.g. /api/data/sales",
       defaultValue: "",
       validation: (value: string) => (!value?.trim() ? "Data URL is required" : null),
-    } satisfies WidgetDynamicFormField<WidgetConfigWithRemoteData, "dataUrl">,
+    } satisfies DynamicFormField<WidgetConfigWithRemoteData, "dataUrl">,
     {
       key: "dataKey",
       type: "text",
@@ -98,7 +122,7 @@ export const CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS: WidgetDynamicForm
         " If empty, the response root will be used.",
       placeholder: "e.g. data.items",
       defaultValue: "",
-    } satisfies WidgetDynamicFormField<WidgetConfigWithRemoteData, "dataKey">,
+    } satisfies DynamicFormField<WidgetConfigWithRemoteData, "dataKey">,
     {
       key: "dataFetchDelay",
       type: "number",
@@ -108,5 +132,5 @@ export const CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS: WidgetDynamicForm
         "For demo purposes only.",
       placeholder: "e.g. 1000",
       defaultValue: 0,
-    } satisfies WidgetDynamicFormField<WidgetConfigWithRemoteData, "dataFetchDelay">,
+    } satisfies DynamicFormField<WidgetConfigWithRemoteData, "dataFetchDelay">,
   ];
