@@ -19,6 +19,7 @@ export interface DashboardActions {
   clearWidgets: () => void;
   toggleLock: () => void;
   moveWidget: (widget: WidgetConfig, toIndex: number) => void;
+  importDashboard: (dashboardConfig: DashboardConfig) => void;
 }
 
 /**
@@ -133,6 +134,15 @@ export function createDashboardStore(props: DashboardStoreFactoryProps): StoreAp
       set({
         ...get(),
         widgets: arrayMove(widgets, currentIndex, toIndex),
+      });
+    },
+
+    /**
+     * Imports a dashboard configuration, replacing the current state.
+     */
+    importDashboard: (dashboardConfig: DashboardConfig) => {
+      set({
+        ...dashboardConfig,
       });
     },
   });
