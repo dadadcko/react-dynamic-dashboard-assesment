@@ -1,0 +1,67 @@
+{
+  "title": "Personal Productivity Dashboard",
+  "panelColumns": 2,
+  "widgetHeight": 320,
+  "locked": false,
+  "widgets": [
+    {
+      "type": "chart",
+      "id": "pers-1",
+      "title": "Fitness Tracker",
+      "dataUrl": "/data/charts/fitness-tracker.json",
+      "xAxisKey": "day",
+      "series": [
+        { "key": "steps", "label": "Steps", "color": "#17becf" },
+        { "key": "calories", "label": "Calories Burned", "color": "#bcbd22" },
+        { "key": "distance", "label": "Distance (km)", "color": "#ff9800" },
+        { "key": "activeMinutes", "label": "Active Minutes", "color": "#4caf50" }
+      ],
+      "description": "Daily steps, calories burned, distance, and active minutes",
+      "dataKey": "",
+      "dataFetchDelay": 300,
+      "xAxisLabel": "Day",
+      "yAxisLabel": "Count"
+    },
+    {
+      "type": "chart",
+      "id": "pers-2",
+      "title": "Temperature Trends",
+      "dataUrl": "/data/charts/temperature-trends.json",
+      "xAxisKey": "time",
+      "series": [
+        { "key": "temperature", "label": "Temperature", "color": "#7f7f7f" },
+        { "key": "humidity", "label": "Humidity (%)", "color": "#2196f3" },
+        { "key": "pressure", "label": "Pressure (hPa)", "color": "#00bcd4" }
+      ],
+      "description": "Hourly temperature, humidity, and pressure records",
+      "dataKey": "",
+      "dataFetchDelay": 500,
+      "xAxisLabel": "Time",
+      "yAxisLabel": "Temperature (°C) / Humidity (%) / Pressure (hPa)"
+    },
+    {
+      "type": "table",
+      "id": "pers-3",
+      "title": "User List",
+      "dataUrl": "/data/tables/users.json",
+      "dataFetchDelay": 1000,
+      "dataKey": "",
+      "stripped": true,
+      "columns": [
+        { "key": "id", "label": "ID" },
+        { "key": "name", "label": "Name" },
+        { "key": "email", "label": "Email" },
+        { "key": "status", "label": "Status" },
+        { "key": "registered", "label": "Registered" }
+      ]
+    },
+    {
+      "type": "todo-list",
+      "id": "pers-4",
+      "title": "Shopping List",
+      "dataUrl": "/data/todolists/shopping-list.json",
+      "dataFetchDelay": 400,
+      "dataKey": ""
+    }
+  ]
+}

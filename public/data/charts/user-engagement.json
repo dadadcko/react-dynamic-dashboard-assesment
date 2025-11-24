@@ -1,0 +1,86 @@
+[
+  {
+    "week": "Week 1",
+    "activeUsers": 2400,
+    "newSignups": 180,
+    "sessionDuration": 12.5,
+    "conversions": 45
+  },
+  {
+    "week": "Week 2",
+    "activeUsers": 2650,
+    "newSignups": 220,
+    "sessionDuration": 13.2,
+    "conversions": 52
+  },
+  {
+    "week": "Week 3",
+    "activeUsers": 2890,
+    "newSignups": 255,
+    "sessionDuration": 14.1,
+    "conversions": 61
+  },
+  {
+    "week": "Week 4",
+    "activeUsers": 3120,
+    "newSignups": 290,
+    "sessionDuration": 14.8,
+    "conversions": 68
+  },
+  {
+    "week": "Week 5",
+    "activeUsers": 3380,
+    "newSignups": 325,
+    "sessionDuration": 15.4,
+    "conversions": 76
+  },
+  {
+    "week": "Week 6",
+    "activeUsers": 3650,
+    "newSignups": 360,
+    "sessionDuration": 16.2,
+    "conversions": 85
+  },
+  {
+    "week": "Week 7",
+    "activeUsers": 3920,
+    "newSignups": 395,
+    "sessionDuration": 16.9,
+    "conversions": 93
+  },
+  {
+    "week": "Week 8",
+    "activeUsers": 4200,
+    "newSignups": 430,
+    "sessionDuration": 17.6,
+    "conversions": 102
+  },
+  {
+    "week": "Week 9",
+    "activeUsers": 4480,
+    "newSignups": 465,
+    "sessionDuration": 18.3,
+    "conversions": 112
+  },
+  {
+    "week": "Week 10",
+    "activeUsers": 4780,
+    "newSignups": 505,
+    "sessionDuration": 19.1,
+    "conversions": 123
+  },
+  {
+    "week": "Week 11",
+    "activeUsers": 5100,
+    "newSignups": 545,
+    "sessionDuration": 19.8,
+    "conversions": 135
+  },
+  {
+    "week": "Week 12",
+    "activeUsers": 5450,
+    "newSignups": 590,
+    "sessionDuration": 20.5,
+    "conversions": 148
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "quarter": "Q1 2023",
+    "electronics": 245000,
+    "clothing": 180000,
+    "food": 320000,
+    "homeGoods": 195000
+  },
+  {
+    "quarter": "Q2 2023",
+    "electronics": 268000,
+    "clothing": 195000,
+    "food": 335000,
+    "homeGoods": 210000
+  },
+  {
+    "quarter": "Q3 2023",
+    "electronics": 290000,
+    "clothing": 220000,
+    "food": 360000,
+    "homeGoods": 235000
+  },
+  {
+    "quarter": "Q4 2023",
+    "electronics": 425000,
+    "clothing": 280000,
+    "food": 410000,
+    "homeGoods": 305000
+  },
+  {
+    "quarter": "Q1 2024",
+    "electronics": 280000,
+    "clothing": 205000,
+    "food": 345000,
+    "homeGoods": 215000
+  },
+  {
+    "quarter": "Q2 2024",
+    "electronics": 310000,
+    "clothing": 230000,
+    "food": 375000,
+    "homeGoods": 245000
+  },
+  {
+    "quarter": "Q3 2024",
+    "electronics": 340000,
+    "clothing": 260000,
+    "food": 395000,
+    "homeGoods": 270000
+  },
+  {
+    "quarter": "Q4 2024",
+    "electronics": 480000,
+    "clothing": 320000,
+    "food": 450000,
+    "homeGoods": 340000
+  }
+]

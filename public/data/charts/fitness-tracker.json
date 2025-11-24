@@ -1,0 +1,51 @@
+[
+  {
+    "day": "Monday",
+    "steps": 8500,
+    "calories": 2200,
+    "distance": 6.2,
+    "activeMinutes": 45
+  },
+  {
+    "day": "Tuesday",
+    "steps": 10200,
+    "calories": 2450,
+    "distance": 7.8,
+    "activeMinutes": 62
+  },
+  {
+    "day": "Wednesday",
+    "steps": 9800,
+    "calories": 2350,
+    "distance": 7.3,
+    "activeMinutes": 55
+  },
+  {
+    "day": "Thursday",
+    "steps": 12500,
+    "calories": 2680,
+    "distance": 9.5,
+    "activeMinutes": 78
+  },
+  {
+    "day": "Friday",
+    "steps": 11800,
+    "calories": 2580,
+    "distance": 8.9,
+    "activeMinutes": 71
+  },
+  {
+    "day": "Saturday",
+    "steps": 15200,
+    "calories": 2980,
+    "distance": 11.8,
+    "activeMinutes": 105
+  },
+  {
+    "day": "Sunday",
+    "steps": 7300,
+    "calories": 2100,
+    "distance": 5.5,
+    "activeMinutes": 38
+  }
+]

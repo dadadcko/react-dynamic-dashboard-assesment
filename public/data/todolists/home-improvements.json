@@ -1,0 +1,6 @@
+[
+  { "id": 1, "task": "Paint the living room", "completed": false },
+  { "id": 2, "task": "Fix leaking faucet", "completed": true },
+  { "id": 3, "task": "Organize garage", "completed": false },
+  { "id": 4, "task": "Replace hallway lightbulb", "completed": true }
+]

@@ -1,0 +1,14 @@
+[
+  { "date": "2024-03-18", "visitors": 2720, "pageViews": 7800, "bounceRate": 28 },
+  { "date": "2024-03-11", "visitors": 2580, "pageViews": 7200, "bounceRate": 29 },
+  { "date": "2024-03-04", "visitors": 2400, "pageViews": 6700, "bounceRate": 30 },
+  { "date": "2024-02-26", "visitors": 2250, "pageViews": 6200, "bounceRate": 32 },
+  { "date": "2024-02-19", "visitors": 2100, "pageViews": 5800, "bounceRate": 33 },
+  { "date": "2024-02-12", "visitors": 1950, "pageViews": 5300, "bounceRate": 35 },
+  { "date": "2024-02-05", "visitors": 1820, "pageViews": 5000, "bounceRate": 36 },
+  { "date": "2024-01-29", "visitors": 1680, "pageViews": 4500, "bounceRate": 38 },
+  { "date": "2024-01-22", "visitors": 1450, "pageViews": 3900, "bounceRate": 43 },
+  { "date": "2024-01-15", "visitors": 1520, "pageViews": 4100, "bounceRate": 40 },
+  { "date": "2024-01-08", "visitors": 1380, "pageViews": 3650, "bounceRate": 42 },
+  { "date": "2024-01-01", "visitors": 1250, "pageViews": 3200, "bounceRate": 45 }
+]

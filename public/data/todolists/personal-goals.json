@@ -1,0 +1,6 @@
+[
+  { "id": 1, "task": "Read 20 pages of a book", "completed": true },
+  { "id": 2, "task": "Go for a 30-minute walk", "completed": false },
+  { "id": 3, "task": "Meditate for 10 minutes", "completed": false },
+  { "id": 4, "task": "Call a friend", "completed": true }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "timestamp": "10:00",
+    "cpuUsage": 45,
+    "memoryUsage": 62,
+    "diskIO": 120,
+    "networkTraffic": 85
+  },
+  {
+    "timestamp": "10:15",
+    "cpuUsage": 52,
+    "memoryUsage": 65,
+    "diskIO": 135,
+    "networkTraffic": 92
+  },
+  {
+    "timestamp": "10:30",
+    "cpuUsage": 68,
+    "memoryUsage": 71,
+    "diskIO": 180,
+    "networkTraffic": 110
+  },
+  {
+    "timestamp": "10:45",
+    "cpuUsage": 75,
+    "memoryUsage": 74,
+    "diskIO": 195,
+    "networkTraffic": 125
+  },
+  {
+    "timestamp": "11:00",
+    "cpuUsage": 82,
+    "memoryUsage": 78,
+    "diskIO": 210,
+    "networkTraffic": 138
+  },
+  {
+    "timestamp": "11:15",
+    "cpuUsage": 88,
+    "memoryUsage": 82,
+    "diskIO": 240,
+    "networkTraffic": 152
+  },
+  {
+    "timestamp": "11:30",
+    "cpuUsage": 91,
+    "memoryUsage": 85,
+    "diskIO": 265,
+    "networkTraffic": 168
+  },
+  {
+    "timestamp": "11:45",
+    "cpuUsage": 87,
+    "memoryUsage": 83,
+    "diskIO": 245,
+    "networkTraffic": 155
+  },
+  {
+    "timestamp": "12:00",
+    "cpuUsage": 79,
+    "memoryUsage": 79,
+    "diskIO": 215,
+    "networkTraffic": 142
+  },
+  {
+    "timestamp": "12:15",
+    "cpuUsage": 71,
+    "memoryUsage": 75,
+    "diskIO": 190,
+    "networkTraffic": 128
+  },
+  {
+    "timestamp": "12:30",
+    "cpuUsage": 63,
+    "memoryUsage": 70,
+    "diskIO": 165,
+    "networkTraffic": 112
+  },
+  {
+    "timestamp": "12:45",
+    "cpuUsage": 55,
+    "memoryUsage": 66,
+    "diskIO": 145,
+    "networkTraffic": 98
+  }
+]

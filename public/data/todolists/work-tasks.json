@@ -1,0 +1,6 @@
+[
+  { "id": 1, "task": "Prepare quarterly report", "completed": false },
+  { "id": 2, "task": "Email project update to team", "completed": true },
+  { "id": 3, "task": "Review pull requests", "completed": false },
+  { "id": 4, "task": "Schedule client meeting", "completed": false }
+]

@@ -1,0 +1,156 @@
+{
+  "title": "Finance Dashboard",
+  "panelColumns": 3,
+  "widgetHeight": 360,
+  "locked": true,
+  "widgets": [
+    {
+      "type": "chart",
+      "id": "fin-1",
+      "title": "Financial Overview",
+      "dataUrl": "/data/charts/financial.json",
+      "xAxisKey": "month",
+      "series": [
+        { "key": "revenue", "label": "Revenue", "color": "#9467bd" },
+        { "key": "expenses", "label": "Expenses", "color": "#8c564b" },
+        { "key": "profit", "label": "Profit", "color": "#2ca02c" }
+      ],
+      "description": "Monthly revenue, expenses, and profit",
+      "dataKey": "",
+      "dataFetchDelay": 300,
+      "xAxisLabel": "Month",
+      "yAxisLabel": "Amount"
+    },
+    {
+      "type": "chart",
+      "id": "fin-2",
+      "title": "Stock Prices",
+      "dataUrl": "/data/charts/stock-prices.json",
+      "xAxisKey": "date",
+      "series": [
+        { "key": "apple", "label": "Apple", "color": "#e377c2" },
+        { "key": "microsoft", "label": "Microsoft", "color": "#1f77b4" },
+        { "key": "google", "label": "Google", "color": "#ff9800" },
+        { "key": "amazon", "label": "Amazon", "color": "#2ca02c" }
+      ],
+      "description": "Stock price trends for major companies over time",
+      "dataKey": "",
+      "dataFetchDelay": 500,
+      "xAxisLabel": "Date",
+      "yAxisLabel": "Price"
+    },
+    {
+      "type": "chart",
+      "id": "fin-5",
+      "title": "User Engagement",
+      "dataUrl": "/data/charts/user-engagement.json",
+      "xAxisKey": "week",
+      "series": [
+        { "key": "activeUsers", "label": "Active Users", "color": "#17becf" },
+        { "key": "newSignups", "label": "New Signups", "color": "#bcbd22" },
+        { "key": "sessionDuration", "label": "Session Duration (min)", "color": "#ff9800" },
+        { "key": "conversions", "label": "Conversions", "color": "#4caf50" }
+      ],
+      "description": "Weekly user engagement metrics",
+      "dataKey": "",
+      "dataFetchDelay": 350,
+      "xAxisLabel": "Week",
+      "yAxisLabel": "Users / Signups / Duration / Conversions"
+    },
+    {
+      "type": "chart",
+      "id": "fin-6",
+      "title": "Server Metrics",
+      "dataUrl": "/data/charts/server-metrics.json",
+      "xAxisKey": "timestamp",
+      "series": [
+        { "key": "cpuUsage", "label": "CPU Usage (%)", "color": "#e91e63" },
+        { "key": "memoryUsage", "label": "Memory Usage (%)", "color": "#00bcd4" },
+        { "key": "diskIO", "label": "Disk IO", "color": "#8c564b" },
+        { "key": "networkTraffic", "label": "Network Traffic", "color": "#2ca02c" }
+      ],
+      "description": "Server performance metrics over time",
+      "dataKey": "",
+      "dataFetchDelay": 400,
+      "xAxisLabel": "Timestamp",
+      "yAxisLabel": "Usage / IO / Traffic"
+    },
+    {
+      "type": "chart",
+      "id": "fin-7",
+      "title": "Sales Performance",
+      "dataUrl": "/data/charts/sales-performance.json",
+      "xAxisKey": "quarter",
+      "series": [
+        { "key": "electronics", "label": "Electronics", "color": "#1f77b4" },
+        { "key": "clothing", "label": "Clothing", "color": "#ff7f0e" },
+        { "key": "food", "label": "Food", "color": "#2ca02c" },
+        { "key": "homeGoods", "label": "Home Goods", "color": "#d62728" }
+      ],
+      "description": "Quarterly sales performance by category",
+      "dataKey": "",
+      "dataFetchDelay": 450,
+      "xAxisLabel": "Quarter",
+      "yAxisLabel": "Sales ($)"
+    },
+    {
+      "type": "chart",
+      "id": "fin-8",
+      "title": "Product Ratings",
+      "dataUrl": "/data/charts/product-ratings.json",
+      "xAxisKey": "product",
+      "series": [
+        { "key": "quality", "label": "Quality", "color": "#9467bd" },
+        { "key": "price", "label": "Price", "color": "#8c564b" },
+        { "key": "service", "label": "Service", "color": "#2ca02c" },
+        { "key": "delivery", "label": "Delivery", "color": "#d62728" }
+      ],
+      "description": "Product ratings by category",
+      "dataKey": "",
+      "dataFetchDelay": 500,
+      "xAxisLabel": "Product",
+      "yAxisLabel": "Rating"
+    },
+    {
+      "type": "chart",
+      "id": "fin-9",
+      "title": "Energy Consumption",
+      "dataUrl": "/data/charts/energy-consumption.json",
+      "xAxisKey": "month",
+      "series": [
+        { "key": "electricity", "label": "Electricity", "color": "#1f77b4" },
+        { "key": "gas", "label": "Gas", "color": "#ff7f0e" },
+        { "key": "water", "label": "Water", "color": "#2ca02c" },
+        { "key": "renewable", "label": "Renewable", "color": "#d62728" }
+      ],
+      "description": "Monthly energy consumption by type",
+      "dataKey": "",
+      "dataFetchDelay": 550,
+      "xAxisLabel": "Month",
+      "yAxisLabel": "Consumption"
+    },
+    {
+      "type": "table",
+      "id": "fin-3",
+      "title": "Sales Summary",
+      "dataUrl": "/data/tables/sales.json",
+      "dataFetchDelay": 1000,
+      "dataKey": "",
+      "stripped": true,
+      "columns": [
+        { "key": "month", "label": "Month" },
+        { "key": "orders", "label": "Orders" },
+        { "key": "revenue", "label": "Revenue" },
+        { "key": "returns", "label": "Returns" }
+      ]
+    },
+    {
+      "type": "todo-list",
+      "id": "fin-4",
+      "title": "Personal Goals",
+      "dataUrl": "/data/todolists/personal-goals.json",
+      "dataFetchDelay": 400,
+      "dataKey": ""
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+[
+  { "month": "January", "orders": 120, "revenue": 2400.5, "returns": 5 },
+  { "month": "February", "orders": 98, "revenue": 1980.75, "returns": 3 },
+  { "month": "March", "orders": 135, "revenue": 2750.0, "returns": 7 },
+  { "month": "April", "orders": 110, "revenue": 2205.2, "returns": 4 }
+]

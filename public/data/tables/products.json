@@ -1,0 +1,18 @@
+[
+  {
+    "sku": "A100",
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "stock": 120,
+    "price": 19.99
+  },
+  {
+    "sku": "B200",
+    "name": "Bluetooth Speaker",
+    "category": "Electronics",
+    "stock": 45,
+    "price": 49.99
+  },
+  { "sku": "C300", "name": "Coffee Mug", "category": "Kitchen", "stock": 200, "price": 7.99 },
+  { "sku": "D400", "name": "Notebook", "category": "Stationery", "stock": 150, "price": 2.49 }
+]

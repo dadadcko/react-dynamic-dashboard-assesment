@@ -1,0 +1,86 @@
+[
+  {
+    "date": "2024-09-01",
+    "apple": 175.5,
+    "microsoft": 342.2,
+    "google": 138.75,
+    "amazon": 176.3
+  },
+  {
+    "date": "2024-09-08",
+    "apple": 178.2,
+    "microsoft": 348.5,
+    "google": 141.2,
+    "amazon": 179.8
+  },
+  {
+    "date": "2024-09-15",
+    "apple": 181.4,
+    "microsoft": 355.7,
+    "google": 143.9,
+    "amazon": 183.5
+  },
+  {
+    "date": "2024-09-22",
+    "apple": 179.8,
+    "microsoft": 351.3,
+    "google": 142.1,
+    "amazon": 181.2
+  },
+  {
+    "date": "2024-09-29",
+    "apple": 183.6,
+    "microsoft": 359.8,
+    "google": 145.6,
+    "amazon": 186.4
+  },
+  {
+    "date": "2024-10-06",
+    "apple": 186.9,
+    "microsoft": 365.2,
+    "google": 148.3,
+    "amazon": 190.1
+  },
+  {
+    "date": "2024-10-13",
+    "apple": 188.5,
+    "microsoft": 368.4,
+    "google": 149.8,
+    "amazon": 192.7
+  },
+  {
+    "date": "2024-10-20",
+    "apple": 191.2,
+    "microsoft": 372.6,
+    "google": 152.4,
+    "amazon": 196.3
+  },
+  {
+    "date": "2024-10-27",
+    "apple": 193.8,
+    "microsoft": 378.9,
+    "google": 154.7,
+    "amazon": 199.5
+  },
+  {
+    "date": "2024-11-03",
+    "apple": 196.4,
+    "microsoft": 384.2,
+    "google": 157.1,
+    "amazon": 203.8
+  },
+  {
+    "date": "2024-11-10",
+    "apple": 199.1,
+    "microsoft": 390.5,
+    "google": 159.6,
+    "amazon": 207.2
+  },
+  {
+    "date": "2024-11-17",
+    "apple": 201.7,
+    "microsoft": 395.8,
+    "google": 162.3,
+    "amazon": 211.4
+  }
+]

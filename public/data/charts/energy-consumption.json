@@ -1,0 +1,86 @@
+[
+  {
+    "month": "January",
+    "electricity": 1250,
+    "gas": 890,
+    "water": 340,
+    "renewable": 420
+  },
+  {
+    "month": "February",
+    "electricity": 1180,
+    "gas": 820,
+    "water": 320,
+    "renewable": 450
+  },
+  {
+    "month": "March",
+    "electricity": 1100,
+    "gas": 650,
+    "water": 350,
+    "renewable": 520
+  },
+  {
+    "month": "April",
+    "electricity": 980,
+    "gas": 480,
+    "water": 380,
+    "renewable": 590
+  },
+  {
+    "month": "May",
+    "electricity": 920,
+    "gas": 320,
+    "water": 420,
+    "renewable": 680
+  },
+  {
+    "month": "June",
+    "electricity": 1050,
+    "gas": 180,
+    "water": 480,
+    "renewable": 750
+  },
+  {
+    "month": "July",
+    "electricity": 1280,
+    "gas": 120,
+    "water": 520,
+    "renewable": 820
+  },
+  {
+    "month": "August",
+    "electricity": 1320,
+    "gas": 140,
+    "water": 500,
+    "renewable": 790
+  },
+  {
+    "month": "September",
+    "electricity": 1150,
+    "gas": 250,
+    "water": 440,
+    "renewable": 710
+  },
+  {
+    "month": "October",
+    "electricity": 1050,
+    "gas": 420,
+    "water": 390,
+    "renewable": 640
+  },
+  {
+    "month": "November",
+    "electricity": 1180,
+    "gas": 680,
+    "water": 350,
+    "renewable": 530
+  },
+  {
+    "month": "December",
+    "electricity": 1280,
+    "gas": 920,
+    "water": 330,
+    "renewable": 460
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "title": "Marketing Dashboard",
+  "panelColumns": 2,
+  "widgetHeight": 400,
+  "locked": false,
+  "widgets": [
+    {
+      "type": "chart",
+      "id": "mkt-1",
+      "title": "Website Traffic Trends",
+      "dataUrl": "/data/charts/website-traffic.json",
+      "xAxisKey": "date",
+      "series": [
+        { "key": "visitors", "label": "Visitors", "color": "#1f77b4" },
+        { "key": "pageViews", "label": "Page Views", "color": "#ff7f0e" },
+        { "key": "bounceRate", "label": "Bounce Rate (%)", "color": "#2ca02c" }
+      ],
+      "description": "Monthly website traffic, page views, and bounce rate",
+      "dataKey": "",
+      "dataFetchDelay": 300,
+      "xAxisLabel": "Date",
+      "yAxisLabel": "Visitors / Page Views / Bounce Rate (%)"
+    },
+    {
+      "type": "chart",
+      "id": "mkt-2",
+      "title": "Social Media Growth",
+      "dataUrl": "/data/charts/social-media-growth.json",
+      "xAxisKey": "date",
+      "series": [
+        { "key": "instagram", "label": "Instagram", "color": "#E1306C" },
+        { "key": "twitter", "label": "Twitter", "color": "#1DA1F2" },
+        { "key": "facebook", "label": "Facebook", "color": "#4267B2" },
+        { "key": "linkedin", "label": "LinkedIn", "color": "#0077B5" },
+        { "key": "tiktok", "label": "TikTok", "color": "#000000" }
+      ],
+      "description": "Growth on social media platforms",
+      "dataKey": "",
+      "dataFetchDelay": 500,
+      "xAxisLabel": "Date",
+      "yAxisLabel": "Followers"
+    },
+    {
+      "type": "table",
+      "id": "mkt-3",
+      "title": "Product Inventory",
+      "dataUrl": "/data/tables/products.json",
+      "dataFetchDelay": 1000,
+      "dataKey": "",
+      "stripped": true,
+      "columns": [
+        { "key": "sku", "label": "SKU" },
+        { "key": "name", "label": "Product Name" },
+        { "key": "stock", "label": "Stock" },
+        { "key": "price", "label": "Price" }
+      ]
+    },
+    {
+      "type": "todo-list",
+      "id": "mkt-4",
+      "title": "Work Tasks",
+      "dataUrl": "/data/todolists/work-tasks.json",
+      "dataFetchDelay": 400,
+      "dataKey": ""
+    }
+  ]
+}

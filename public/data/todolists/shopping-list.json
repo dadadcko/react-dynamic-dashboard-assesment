@@ -1,0 +1,6 @@
+[
+  { "id": 1, "task": "Buy milk", "completed": false },
+  { "id": 2, "task": "Get bread", "completed": true },
+  { "id": 3, "task": "Pick up laundry detergent", "completed": false },
+  { "id": 4, "task": "Purchase fresh vegetables", "completed": false }
+]
