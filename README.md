@@ -1,73 +1,110 @@
-# React + TypeScript + Vite
+# 🚀 Dynamic Dashboard with Advanced State Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project showcases a dynamic dashboard application built with React.
+It is part of a private assignment for learning purposes.
 
-Currently, two official plugins are available:
+## Running the Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run this project locally, follow these steps:
 
-## React Compiler
+1. Clone the repository
+2. Install dependencies using `npm install`
+3. Build production version using `npm run build`
+4. Start preview production server using `npm run preview`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+If you want to run the development server, rather than production build, use `npm run dev`.
 
-## Expanding the ESLint configuration
+On first application boot, the dashboard will be empty. Use the "Add Widget" button to add new widgets to the dashboard.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+There are a couple of Dashboard examples available in the `public/dashboards` folder.
+You can load them using the `Import from JSON` feature.
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+## Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Add, remove, and rearrange widgets on the dashboard
+- Import and export dashboard configurations via JSON
+- Dashboard locking to prevent accidental changes
+- Fluid, stretchable container layout
+- Fully responsive design for every screen size
+- Dark and light mode
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## Technologies Used
+
+- [React](https://github.com/facebook/react) (with React Compiler)
+- [Zustand](https://github.com/pmndrs/zustand) for advanced state management
+- [Mantine](https://github.com/mantinedev/mantine) UI component library
+- [DnD Kit](https://github.com/clauderic/dnd-kit) for drag-and-drop functionality
+- [Vitest](https://github.com/vitest-dev/vitest) + [React Testing Library](https://github.com/testing-library/react-testing-library) for testing
+- [Eslint](https://github.com/eslint/eslint) + [Prettier](https://github.com/prettier/prettier) for code quality and formatting
+
+## Widget Architecture
+
+Proposed and implemented architecture allows:
+
+- dynamic widget type registration
+- mapping (render resolution),
+- dynamic form composition,
+
+all in a type-safe manner, because of TypeScript.
+
+### Core Runtime Types
+
+- WidgetConfig: { id, type, title, description? }
+- Widget: WidgetConfig + render(): ReactNode
+- WidgetDynamicTypeProvider: { mapper, metadata, createNew, form }
+- metadata: { type, label, description, icon?, hidden? }
+- form.fields: dynamic schema (primitive | array) with validation.
+- Unknown provider always present; guarantees safe fallback.
+
+### Provider Registration & Precedence
+
+Providers are appended as nested `WidgetDynamicTypeContextProvider` wrappers.
+This opens up a **plugin-based** architecture, allowing new widget types
+to be added without modifying existing, core code.
+
+### Chained Mapper Resolution
+
+In current implementation, `useChainedWidgetMapper` builds a single function, composed of the following providers' mappers:
+
+```mermaid
+flowchart LR
+  C[Chart mapper] --> TB[Table mapper] --> T[TodoList mapper] --> U[Unknown mapper] ~~~ F[alwaysThrowMapper]
+  style F stroke-dasharray: 5 5, stroke: #999
+  U:::fallback
+  classDef fallback stroke: #888, stroke-width: 4px
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Note that in this implementation, the `unknown` provider's mapper is terminal.
+It **always** returns a renderable `Widget`, preventing runtime errors.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+> [!TIP]
+> This architecture allows for flexible extension - new providers can just be added to the chain.
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+### Rendering Pipeline
+
+A widget's UI is produced only when its mapper returns a concrete `Widget` with a `render` function.
+`Widget` component invokes chained `mapper` & `render` functions inside `Suspense` + `ErrorBoundary`.
+Widget corpus is always rendered, content is dynamic and in safe context, because of `ErrorBoundary`.
+
+```mermaid
+sequenceDiagram
+  participant Dashboard as Dashboard
+  participant Widget as Widget component
+  participant Chain as useChainedWidgetMapper()
+  participant Mapper as Provider.mapper
+  Dashboard ->> Widget: creates Widget(config)
+  Widget ->> Chain: use hook - chain(config)
+  Chain ->> Mapper: try highest precedence mapper
+  alt Mapper returns null
+    Chain ->> Mapper: next in chain
+  end
+  Mapper -->> Widget: Widget { render() }
+  Widget ->> Widget: render()
 ```
+
+### Extending
+
+To add a new widget type, simply:
+
+1. Implement all needed interfaces with concrete implementation.
+2. Register your provider with all runtime dependencies into the app tree (via context Api).
