@@ -42,19 +42,10 @@ You can load them using the `Import from JSON` feature.
 Proposed and implemented architecture allows:
 
 - dynamic widget type registration
-- mapping (render resolution),
+- automatic runtime render resolution,
 - dynamic form composition,
 
 all in a type-safe manner, because of TypeScript.
-
-### Core Runtime Types
-
-- WidgetConfig: { id, type, title, description? }
-- Widget: WidgetConfig + render(): ReactNode
-- WidgetDynamicTypeProvider: { mapper, metadata, createNew, form }
-- metadata: { type, label, description, icon?, hidden? }
-- form.fields: dynamic schema (primitive | array) with validation.
-- Unknown provider always present; guarantees safe fallback.
 
 ### Provider Registration & Precedence
 
