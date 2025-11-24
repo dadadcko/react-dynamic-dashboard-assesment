@@ -1,6 +1,6 @@
-import { createElement, type FunctionComponent, useContext, useMemo } from "react";
+import { createElement, type FunctionComponent, useContext, useMemo, useState } from "react";
 import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
-import { WidgetDynamicTypeContext } from "@/widgets/core/context.ts";
+import { WidgetActionsContext, WidgetDynamicTypeContext } from "@/widgets/core/context.ts";
 import type { WidgetDynamicFormField } from "@/widgets/core/forms/dynamicForm.types.ts";
 import { useForm } from "@mantine/form";
 import {
@@ -20,6 +20,7 @@ import {
   Title,
 } from "@mantine/core";
 import { IconPlus, IconQuestionMark, IconTrash } from "@tabler/icons-react";
+import { Widget } from "@/widgets/core/widget.component.tsx";
 
 export interface EditWidgetDynamicFormComponentProps {
   widget: WidgetConfig;
@@ -79,8 +80,11 @@ export const EditWidgetDynamicFormComponent: FunctionComponent<
     mode: "uncontrolled",
     initialValues,
     validate,
+    cascadeUpdates: true,
     validateInputOnBlur: true,
+    onValuesChange: () => setPreviewShown(false), // Clear preview when form values change
   });
+  const [isPreviewShown, setPreviewShown] = useState(false);
 
   // Helper function to render form fields based on field type
   // TODO: Refactor this messy render function, most likely into recursive version
@@ -289,8 +293,23 @@ export const EditWidgetDynamicFormComponent: FunctionComponent<
       </Paper>
       <Stack gap="md">{provider.form.fields.map(field => renderField(field))}</Stack>
       <Group justify="flex-end" mt="md">
+        <Button variant="outline" onClick={() => setPreviewShown(x => !x)}>
+          {isPreviewShown ? "Close Preview" : "Preview"}
+        </Button>
         <Button type="submit">Save Widget</Button>
       </Group>
+
+      {isPreviewShown && (
+        <Box w="100%" mt={16}>
+          <Text mb={4}>Widget will look like this:</Text>
+          {/* Render widget as part of preview. */}
+          {/* It can reuse all existing infrastructure, which is cool! */}
+          {/* Override actions in preview, as it is preview-only */}
+          <WidgetActionsContext value={{}}>
+            <Widget config={form.getValues()} />
+          </WidgetActionsContext>
+        </Box>
+      )}
     </form>
   );
 };
