@@ -3,16 +3,18 @@ import { UnknownWidgetDynamicTypeProvider } from "@/widgets/core/unknown/provide
 import type { WidgetMapper } from "@/widgets/core/mapper.ts";
 import type { WidgetActions, WidgetConfig } from "@/widgets/core/widget.type.ts";
 import type { WidgetTypeMetadata } from "@/widgets/core/metadata.ts";
+import type { WidgetDynamicFormConfiguration } from "@/widgets/core/forms/dynamicForm.types.ts";
 
 /**
  * Provider interface for widgets.
  *
  * This encapsulates every runtime dependency required by widgets feature engine.
  */
-export interface WidgetDynamicTypeProvider {
+export interface WidgetDynamicTypeProvider<T extends WidgetConfig = WidgetConfig> {
   mapper: WidgetMapper;
   metadata: WidgetTypeMetadata;
-  createNew: () => WidgetConfig;
+  createNew: () => T;
+  form: WidgetDynamicFormConfiguration<T>;
 }
 
 /**

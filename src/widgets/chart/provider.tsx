@@ -4,11 +4,12 @@ import { ChartWidgetMapper } from "@/widgets/chart/mapper.ts";
 import type { WidgetDynamicTypeProvider } from "@/widgets/core/context.ts";
 import { CHART_WIDGET_TYPE, type ChartWidgetConfig } from "@/widgets/chart/widget.type.ts";
 import { IconChartBar } from "@tabler/icons-react";
+import { CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS } from "@/widgets/core/forms/dynamicForm.types.ts";
 
 /**
  * Dynamic Provider for Chart widgets.
  */
-const ChartWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
+const ChartWidgetDynamicTypeProvider: WidgetDynamicTypeProvider<ChartWidgetConfig> = {
   mapper: ChartWidgetMapper,
   metadata: {
     type: CHART_WIDGET_TYPE,
@@ -25,6 +26,41 @@ const ChartWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
       xAxisKey: null!,
       series: [],
     }) satisfies ChartWidgetConfig,
+  form: {
+    fields: [
+      ...(CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS as never),
+      {
+        key: "xAxisKey",
+        label: "X-Axis Key",
+        description: "The key for the x-axis data. Supports nested keys using dot notation",
+        placeholder: "e.g. date.createdAt",
+        defaultValue: "",
+        validation: (value: string) => (value.trim() === "" ? "X-Axis Key is required" : null),
+      },
+      {
+        key: "xAxisLabel",
+        label: "X-Axis Label",
+        description: "Human-readable label for the x-axis",
+        placeholder: "e.g. Date",
+        defaultValue: "",
+      },
+      {
+        key: "yAxisLabel",
+        label: "Y-Axis Label",
+        description: "Human-readable label for the y-axis",
+        placeholder: "e.g. Value",
+        defaultValue: "",
+      },
+      {
+        // TODO: FIX SERIES FORM FIELD TYPE
+        key: "series",
+        type: "array",
+        label: "Data Series",
+        description: "Definitions for the data series to be displayed",
+        defaultValue: [],
+      },
+    ] as const,
+  },
 };
 
 /**

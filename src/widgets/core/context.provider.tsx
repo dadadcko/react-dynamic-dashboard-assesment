@@ -1,14 +1,16 @@
-import { type FunctionComponent, type PropsWithChildren, useContext, useMemo } from "react";
+import { type PropsWithChildren, useContext, useMemo } from "react";
 import {
   WidgetDynamicTypeContext,
   type WidgetDynamicTypeProvider,
 } from "@/widgets/core/context.ts";
+import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 
 /**
  * Props for WidgetDynamicTypeContextProvider.
  */
-export interface WidgetDynamicTypeContextProviderProps extends PropsWithChildren {
-  dynamicWidgetTypeProvider: WidgetDynamicTypeProvider;
+export interface WidgetDynamicTypeContextProviderProps<T extends WidgetConfig = WidgetConfig>
+  extends PropsWithChildren {
+  dynamicWidgetTypeProvider: WidgetDynamicTypeProvider<T>;
 }
 
 /**
@@ -20,9 +22,10 @@ export interface WidgetDynamicTypeContextProviderProps extends PropsWithChildren
  * @param children
  * @param dynamicWidgetTypeProvider
  */
-export const WidgetDynamicTypeContextProvider: FunctionComponent<
-  WidgetDynamicTypeContextProviderProps
-> = ({ children, dynamicWidgetTypeProvider }) => {
+export const WidgetDynamicTypeContextProvider = <T extends WidgetConfig = WidgetConfig>({
+  children,
+  dynamicWidgetTypeProvider,
+}: WidgetDynamicTypeContextProviderProps<T>) => {
   const providers = useContext(WidgetDynamicTypeContext);
 
   // Defensive technique - if for some reason providers is undefined, create a new array
@@ -30,7 +33,7 @@ export const WidgetDynamicTypeContextProvider: FunctionComponent<
   const newProviders = useMemo(
     () => (providers ? [...providers, dynamicWidgetTypeProvider] : [dynamicWidgetTypeProvider]),
     [providers, dynamicWidgetTypeProvider],
-  );
+  ) as WidgetDynamicTypeProvider[];
 
   return (
     <WidgetDynamicTypeContext.Provider value={newProviders}>

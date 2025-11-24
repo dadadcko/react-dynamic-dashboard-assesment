@@ -141,7 +141,7 @@ export function createDashboardStore(props: DashboardStoreFactoryProps): StoreAp
   return createStore<DashboardStore>()(
     persist(storeCreator, {
       name: dashboardId,
-      storage: createJSONStorage(() => localStorage), // TODO: extract to provider
+      storage: createJSONStorage(() => localStorage),
     }),
   );
 }

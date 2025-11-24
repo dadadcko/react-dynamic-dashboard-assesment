@@ -4,11 +4,12 @@ import { TableWidgetMapper } from "@/widgets/table/mapper.ts";
 import type { WidgetDynamicTypeProvider } from "@/widgets/core/context.ts";
 import { TABLE_WIDGET_TYPE, type TableWidgetConfig } from "@/widgets/table/widget.type.ts";
 import { IconTable } from "@tabler/icons-react";
+import { CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS } from "@/widgets/core/forms/dynamicForm.types.ts";
 
 /**
  * Dynamic Provider for Table widgets.
  */
-const TableWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
+const TableWidgetDynamicTypeProvider: WidgetDynamicTypeProvider<TableWidgetConfig> = {
   mapper: TableWidgetMapper,
   metadata: {
     type: TABLE_WIDGET_TYPE,
@@ -24,6 +25,26 @@ const TableWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
       dataUrl: null!,
       columns: [],
     }) satisfies TableWidgetConfig,
+  form: {
+    fields: [
+      ...(CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS as never),
+      {
+        key: "stripped",
+        type: "boolean",
+        label: "Stripped Rows",
+        description: "Enable stripped row styling for better readability",
+        defaultValue: false,
+      },
+      {
+        // TODO: FIX COLUMNS FORM FIELD TYPE
+        key: "columns",
+        type: "array",
+        label: "Columns",
+        description: "Define the columns to display in the table",
+        defaultValue: [],
+      },
+    ],
+  },
 };
 
 /**

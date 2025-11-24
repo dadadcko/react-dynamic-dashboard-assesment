@@ -7,11 +7,12 @@ import {
   type TodoListWidgetConfig,
 } from "@/widgets/todoList/widget.type.ts";
 import { IconCheckbox } from "@tabler/icons-react";
+import { CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS } from "@/widgets/core/forms/dynamicForm.types.ts";
 
 /**
  * Dynamic Provider for TodoList widgets.
  */
-const TodoListWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
+const TodoListWidgetDynamicTypeProvider: WidgetDynamicTypeProvider<TodoListWidgetConfig> = {
   mapper: TodoListWidgetMapper,
   metadata: {
     type: TODO_LIST_WIDGET_TYPE,
@@ -26,6 +27,9 @@ const TodoListWidgetDynamicTypeProvider: WidgetDynamicTypeProvider = {
       title: null!,
       dataUrl: null!,
     }) satisfies TodoListWidgetConfig,
+  form: {
+    fields: [...(CORE_WIDGET_WITH_REMOTE_DATA_DYNAMIC_FORM_FIELDS as never)],
+  },
 };
 
 /**

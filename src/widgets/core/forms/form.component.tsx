@@ -4,6 +4,7 @@ import type { WidgetConfig } from "@/widgets/core/widget.type.ts";
 import { SelectWidgetTypeComponent } from "@/widgets/core/forms/selectWidgetType.component.tsx";
 import { IconArrowBack } from "@tabler/icons-react";
 import { ErrorBoundary } from "react-error-boundary";
+import { EditWidgetDynamicFormComponent } from "@/widgets/core/forms/editWidgetDynamicForm.component.tsx";
 
 // Lazy load the error component to optimize initial load
 const LazyRenderErrorComponent = lazy(() => import("@/common/renderError.component.tsx"));
@@ -35,6 +36,7 @@ export const WidgetFormComponent: FunctionComponent<WidgetFormComponentProps> = 
   widget,
   show,
   onClose,
+  onSubmit,
 }) => {
   const { open, close, closeAll, register } = useDrawersStack([
     ADD_WIDGET_FORM_DRAWER_ID,
@@ -121,8 +123,7 @@ export const WidgetFormComponent: FunctionComponent<WidgetFormComponentProps> = 
                   Back to selection
                 </Button>
               )}
-              {/* TODO: Implement form */}
-              <p>Dynamic edit form not implemented yet... {widgetState?.title}</p>
+              <EditWidgetDynamicFormComponent widget={widgetState!} onSubmit={onSubmit} />
             </>,
           )}
         </Box>

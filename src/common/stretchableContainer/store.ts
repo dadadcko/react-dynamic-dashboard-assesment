@@ -54,7 +54,7 @@ export function createStretchableContainerStore(
   return createStore<ContainerStretchStore>()(
     persist(storeCreator, {
       name: `stretchable-container-${props.id}`,
-      storage: createJSONStorage(() => localStorage), // TODO: extract to provider
+      storage: createJSONStorage(() => localStorage),
     }),
   );
 }
