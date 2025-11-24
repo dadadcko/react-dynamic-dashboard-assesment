@@ -71,7 +71,7 @@ describe("TodoListWidgetProvider", () => {
     expect(screen.queryByText(/0/)).not.toBeInTheDocument();
   });
 
-  it("should wrap children correctly", async () => {
+  it("should wrap children correctly", () => {
     render(
       <TodoListWidgetTypeContextProvider>
         <div data-testid="child">Child Content</div>

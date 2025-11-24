@@ -51,7 +51,7 @@ export function renderWithMantine(ui: ReactNode) {
   const wrappedUi = createElement(MantineThemeProvider, { env: "test" }, ui);
 
   return render(wrappedUi, {
-    // @ts-ignore - ignore error boundary prop (not inferring correctly)
+    // @ts-expect-error - ignore error boundary prop (not inferring correctly)
     onCaughtError: () => {
       /* empty */
     },
